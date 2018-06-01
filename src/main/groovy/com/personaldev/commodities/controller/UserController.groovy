@@ -16,7 +16,7 @@ class UserController implements AbstractRestController {
     UserService userService
 
     @GetMapping(path = "/user/{email}")
-    User getUser(@PathVariable(value = "email") String email) {
+    User getUser(@PathVariable(value = "email", required = true) String email) {
         userService.getUser(email)
     }
 }

@@ -25,4 +25,11 @@ abstract trait AbstractRestController {
     handleUserNotFoundException(Exception exception) {
         new ErrorResponse(exception, 401001, "User not found", context.getRequestURI())
     }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(value = Exception)
+    @ResponseBody
+    handleGenericException(Exception exception) {
+        new ErrorResponse(exception, 900000, "Unexpected server error occurred. Someting went wong!", context.getRequestURI())
+    }
 }
