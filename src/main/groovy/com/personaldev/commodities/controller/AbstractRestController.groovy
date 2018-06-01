@@ -23,6 +23,6 @@ abstract trait AbstractRestController {
     @ExceptionHandler(value = UserNotFoundException)
     @ResponseBody
     handleUserNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 401001, "UserNotFoundException", context.getRequestURI())
+        new ErrorResponse(exception, 401001, "User not found", context.getRequestURI())
     }
 }

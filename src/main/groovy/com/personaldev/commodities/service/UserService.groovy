@@ -15,7 +15,7 @@ class UserService {
     User getUser(String email) throws UserNotFoundException {
         User user = userDao.getUser(email)
         if(!user) {
-            throw new UserNotFoundException("Email '${email}' not found.")
+            throw new UserNotFoundException("${email}' not found in User table.")
         }
 
         return userDao.getUser(email)

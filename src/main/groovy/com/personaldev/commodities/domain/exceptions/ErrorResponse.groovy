@@ -11,16 +11,15 @@ class ErrorResponse {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass())
 
-    public final String message
-    public final String errorType
+    public final String genericMessage
+    public final String detailedMessage
     public final int errorCode
 
-    //TODO - Test this and enhance to what you want
-    ErrorResponse(Exception ex, Integer errorCode, String detail, String requestUri = "") {
-        this.errorType = detail
-        this.message = ex.getLocalizedMessage()
+    ErrorResponse(Exception ex, Integer errorCode, String genericMessage, String requestUri = "") {
+        this.genericMessage = genericMessage
+        this.detailedMessage = ex.getLocalizedMessage()
         this.errorCode = errorCode
 
-        logger.error("$errorType: $ex.message \n $requestUri")
+        logger.error("$detailedMessage: $ex.message \n $requestUri")
     }
 }
