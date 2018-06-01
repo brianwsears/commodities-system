@@ -1,0 +1,13 @@
+### Main ###
+build/
+
+### Gradle ###
+.gradle
+/gradlew
+gradle/
+gradlew.bat
+!gradle/wrapper/gradle-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea
+*.iml

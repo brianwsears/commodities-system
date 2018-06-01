@@ -1,0 +1,67 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+group = 'com.personaldev'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+
+    // SPRING Dependencies
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-mail:${springBootVersion}")
+    //compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")  // Adding this will cause a 302 until you get the Security stuff figured out.
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}")
+
+    // Other Compile Dependencies
+    compile('com.h2database:h2:1.4.196')
+    compile('com.fasterxml.jackson.core:jackson-core:2.9.4')
+    compile('com.mashape.unirest:unirest-java:1.4.9')
+    compile('io.jsonwebtoken:jjwt:0.9.0')
+    compile('mysql:mysql-connector-java:6.0.+')
+    compile('org.apache.tomcat.embed:tomcat-embed-core:9.0.5')
+    compile('org.apache.tomcat:tomcat-dbcp:9.0.5')
+    compile('org.codehaus.groovy:groovy-all:2.4.14')
+    compile('org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final')
+    compile('org.jasypt:jasypt:1.9.2')
+
+    // RUNTIME Dependencies
+    runtime('mysql:mysql-connector-java')
+    runtime("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+
+    // TEST Dependencies
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testCompile('org.springframework.security:spring-security-test:5.0.3.RELEASE')
+    testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
+    testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
+}
