@@ -1,6 +1,8 @@
 ### Main ###
 build/
 out/
+lib/
+web/
 
 ### Gradle ###
 .gradle

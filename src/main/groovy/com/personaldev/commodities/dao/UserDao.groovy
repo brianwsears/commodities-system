@@ -1,6 +1,6 @@
 package com.personaldev.commodities.dao
 
-import com.personaldev.commodities.domain.User
+import com.personaldev.commodities.domain.user.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.jdbc.core.BeanPropertyRowMapper

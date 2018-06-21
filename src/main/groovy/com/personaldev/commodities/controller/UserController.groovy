@@ -1,6 +1,6 @@
 package com.personaldev.commodities.controller
 
-import com.personaldev.commodities.domain.User
+import com.personaldev.commodities.domain.user.User
 import com.personaldev.commodities.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
