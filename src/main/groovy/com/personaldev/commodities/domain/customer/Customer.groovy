@@ -5,7 +5,7 @@ import groovy.transform.ToString
 @ToString
 class Customer {
 
-    String customer_email
+    String customerEmail
     String firstName
     String lastName
     String nickname

@@ -15,7 +15,7 @@ class CustomerDao {
 
     static final String SELECT_USER_BY_EMAIL = """select email, first_name, last_name, age, nickname, password from customer where email = ?"""
 
-    Customer getUser(String email) {
+    Customer getUserByEmail(String email) {
         try {
             jdbcTemplate.queryForObject(SELECT_USER_BY_EMAIL, new BeanPropertyRowMapper(Customer.class), email)
         } catch (IncorrectResultSizeDataAccessException e) {

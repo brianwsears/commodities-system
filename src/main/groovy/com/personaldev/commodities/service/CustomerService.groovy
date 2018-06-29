@@ -13,11 +13,11 @@ class CustomerService {
     CustomerDao userDao
 
     Customer getUser(String email) throws UserNotFoundException {
-        Customer user = userDao.getUser(email)
+        Customer user = userDao.getUserByEmail(email)
         if(!user) {
             throw new UserNotFoundException("${email}' not found in Customer table.")
         }
 
-        return userDao.getUser(email)
+        return userDao.getUserByEmail(email)
     }
 }

@@ -7,9 +7,9 @@ class CustomerAddress {
 
     int addressId
     int customerAddressId
-    String addressLine1
-    String addressLine2
-    String addressLine3
+    String streetAddressLine1
+    String streetAddressLine2
+    String streetAddressLine3
     String city
     String state
     String zipCode
