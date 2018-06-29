@@ -1,6 +1,6 @@
 package com.personaldev.commodities.controller
 
-import com.personaldev.commodities.domain.user.User
+import com.personaldev.commodities.domain.user.Customer
 import com.personaldev.commodities.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
@@ -16,7 +16,7 @@ class UserController implements AbstractRestController {
     UserService userService
 
     @GetMapping(path = "/user/{email}")
-    User getUser(@PathVariable(value = "email", required = true) String email) {
+    Customer getUser(@PathVariable(value = "email", required = true) String email) {
         userService.getUser(email)
     }
 }

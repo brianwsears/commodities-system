@@ -1,7 +1,7 @@
 package com.personaldev.commodities.service
 
 import com.personaldev.commodities.dao.UserDao
-import com.personaldev.commodities.domain.user.User
+import com.personaldev.commodities.domain.user.Customer
 import com.personaldev.commodities.domain.exceptions.UserNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -12,10 +12,10 @@ class UserService {
     @Autowired
     UserDao userDao
 
-    User getUser(String email) throws UserNotFoundException {
-        User user = userDao.getUser(email)
+    Customer getUser(String email) throws UserNotFoundException {
+        Customer user = userDao.getUser(email)
         if(!user) {
-            throw new UserNotFoundException("${email}' not found in User table.")
+            throw new UserNotFoundException("${email}' not found in Customer table.")
         }
 
         return userDao.getUser(email)

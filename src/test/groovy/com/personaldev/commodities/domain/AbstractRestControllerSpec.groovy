@@ -12,14 +12,14 @@ class AbstractRestControllerSpec extends BaseSpec {
 
     def 'UserNotFoundException returns the correct ErrorResponse object'() {
         given:
-            String detailedMessage = "timmywoot@gmail.com not found in User database."
+            String detailedMessage = "timmywoot@gmail.com not found in Customer database."
             UserNotFoundException userNotFoundException = new UserNotFoundException(detailedMessage)
         when:
             def response = mockAbstractRestController.handleUserNotFoundException(userNotFoundException)
         then:
             response.errorCode == 401001
-            response.genericMessage == "User not found"
-            response.detailedMessage == "timmywoot@gmail.com not found in User database."
+            response.genericMessage == "Customer not found"
+            response.detailedMessage == "timmywoot@gmail.com not found in Customer database."
     }
 
     def 'Exception returns the correct ErrorResponse object'() {

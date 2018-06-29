@@ -1,6 +1,6 @@
 package com.personaldev.commodities.dao
 
-import com.personaldev.commodities.domain.user.User
+import com.personaldev.commodities.domain.user.Customer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.jdbc.core.BeanPropertyRowMapper
@@ -15,9 +15,9 @@ class UserDao {
 
     static final String SELECT_USER_BY_EMAIL = """select email, first_name, last_name, age, nickname, password from user where email = ?"""
 
-    User getUser(String email) {
+    Customer getUser(String email) {
         try {
-            jdbcTemplate.queryForObject(SELECT_USER_BY_EMAIL, new BeanPropertyRowMapper(User.class), email)
+            jdbcTemplate.queryForObject(SELECT_USER_BY_EMAIL, new BeanPropertyRowMapper(Customer.class), email)
         } catch (IncorrectResultSizeDataAccessException e) {
             return null
         }

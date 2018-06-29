@@ -3,12 +3,13 @@ package com.personaldev.commodities.domain.user
 import groovy.transform.ToString
 
 @ToString
-class User {
+class Customer {
 
-    String email
+    String customer_email
     String firstName
     String lastName
-    Integer age
     String nickname
-    String password
+    int age
+    String gender
+    List<CustomerAddress> customerAddresses
 }

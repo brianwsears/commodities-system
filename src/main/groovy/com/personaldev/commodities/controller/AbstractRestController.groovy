@@ -23,7 +23,7 @@ abstract trait AbstractRestController {
     @ExceptionHandler(value = UserNotFoundException)
     @ResponseBody
     handleUserNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 401001, "User not found")
+        new ErrorResponse(exception, 401001, "Customer not found")
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

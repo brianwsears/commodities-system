@@ -11,7 +11,7 @@ class ErrorResponseSpec extends BaseSpec {
     def "Constructing ErrorResponse object builds an ErrorResponse with the passed parameters"() {
         given:
             int errorCode = 400101
-            String genericMessage = "User not found."
+            String genericMessage = "Customer not found."
             String detailedMessage = "testUser@commodities.com not found."
             String requestUri = "http://localhost:8080/commodities-service/user/testUser@commoditeis.com"
             UserNotFoundException userNotFoundException = new UserNotFoundException(detailedMessage)
