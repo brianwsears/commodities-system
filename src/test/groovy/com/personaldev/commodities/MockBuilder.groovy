@@ -33,7 +33,7 @@ class MockBuilder {
     }
 
     static final List<CustomerAddress> buildCustomerAddressList() {
-        List<CustomerAddress> customerAddressList
+        List<CustomerAddress> customerAddressList = new ArrayList<>()
 
         customerAddressList << buildCustomerAddress(1001)
         customerAddressList << buildCustomerAddress(1002)
@@ -41,9 +41,9 @@ class MockBuilder {
          customerAddressList
     }
 
-    static final Phone buildPhone(int phoneNumber) {
+    static final Phone buildPhone() {
         return new Phone(
-                phoneNumber: phoneNumber,
+                phoneNumber: 5732218874,
                 type: PhoneType.WORK.toString(),
                 customerEmail: "picklesmcgee@gmail.com"
         )
