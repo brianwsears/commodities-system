@@ -1,7 +1,7 @@
 package com.personaldev.commodities.controller
 
-import com.personaldev.commodities.domain.user.Customer
-import com.personaldev.commodities.service.UserService
+import com.personaldev.commodities.domain.customer.Customer
+import com.personaldev.commodities.service.CustomerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/commodities-service/v1")
-class UserController implements AbstractRestController {
+class CustomerController implements AbstractRestController {
 
     @Autowired
-    UserService userService
+    CustomerService userService
 
     @GetMapping(path = "/user/{email}")
     Customer getUser(@PathVariable(value = "email", required = true) String email) {

@@ -1,4 +1,4 @@
-package com.personaldev.commodities.domain.user
+package com.personaldev.commodities.domain.customer
 
 import groovy.transform.ToString
 
