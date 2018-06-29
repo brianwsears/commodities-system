@@ -18,6 +18,6 @@ class CustomerService {
             throw new UserNotFoundException("${email}' not found in Customer table.")
         }
 
-        return userDao.getUserByEmail(email)
+        return user
     }
 }
