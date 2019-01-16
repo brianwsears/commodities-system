@@ -11,24 +11,24 @@ class CustomerServiceSpec extends BaseSpec {
 
     def setup() {
         service = new CustomerService(
-                userDao: Mock(CustomerDao)
+                customerDao: Mock(CustomerDao)
         )
     }
 
     def "getUser returns a Customer object"() {
         given:
-            service.userDao.getUserByEmail("email") >> mockCustomer
+            service.customerDao.getUserByEmail("email") >> mockCustomer
         when:
-            def response = service.getUser("email")
+            def response = service.getCustomer("email")
         then:
             response instanceof Customer
     }
 
     def "getUser throws UserNotFoundException when no user is found"() {
         given:
-            service.userDao.getUserByEmail("email") >> null
+            service.customerDao.getUserByEmail("email") >> null
         when:
-            service.getUser("email")
+            service.getCustomer("email")
         then:
             thrown(UserNotFoundException)
     }

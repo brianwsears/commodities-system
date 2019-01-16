@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController
 class CustomerController implements AbstractRestController {
 
     @Autowired
-    CustomerService userService
+    CustomerService customerService
 
     @GetMapping(path = "/user/{email}")
     Customer getUser(@PathVariable(value = "email", required = true) String email) {
-        userService.getUser(email)
+        customerService.getCustomer(email)
     }
 }

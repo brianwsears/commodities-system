@@ -1,5 +1,6 @@
 package com.personaldev.commodities.controller
 
+import com.personaldev.commodities.domain.exceptions.DaoSelectException
 import com.personaldev.commodities.domain.exceptions.ErrorResponse
 import com.personaldev.commodities.domain.exceptions.UserNotFoundException
 import groovy.transform.CompileStatic

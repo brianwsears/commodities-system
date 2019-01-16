@@ -1,6 +1,6 @@
 package com.personaldev.commodities.dao
 
-import com.personaldev.commodities.domain.customer.Customer
+import com.personaldev.commodities.domain.customer.CustomerAddress
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.jdbc.core.BeanPropertyRowMapper
@@ -8,16 +8,17 @@ import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
 
 @Repository
-class CustomerDao {
+class AddressDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate
 
-    static final String SELECT_USER_BY_EMAIL = """select * from customer where customer.customer_email = ?"""
+    static final String SELECT_CUSTOMER_ADDRESS = """
+        select * from address where customer_address_id"""
 
-    Customer getUserByEmail(String email) {
+    CustomerAddress getCustomerAddress(String customerAddressId) {
         try {
-            jdbcTemplate.queryForObject(SELECT_USER_BY_EMAIL, new BeanPropertyRowMapper(Customer.class), email)
+            jdbcTemplate.queryForList(SELECT_CUSTOMER_ADDRESS, new BeanPropertyRowMapper(CustomerAddress.class), customerAddressId)
         } catch (IncorrectResultSizeDataAccessException e) {
             return null
         }

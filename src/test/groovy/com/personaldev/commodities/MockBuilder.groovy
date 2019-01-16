@@ -15,7 +15,7 @@ class MockBuilder {
                 nickname: "The Legend",
                 age: 34,
                 gender: "Male",
-                customerAddresses: buildCustomerAddressList()
+                addressList: buildCustomerAddressList()
         )
     }
 

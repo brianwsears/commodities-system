@@ -1,23 +1,56 @@
 package com.personaldev.commodities.service
 
+import com.personaldev.commodities.dao.AddressDao
 import com.personaldev.commodities.dao.CustomerDao
+import com.personaldev.commodities.dao.PhoneDao
 import com.personaldev.commodities.domain.customer.Customer
+import com.personaldev.commodities.domain.customer.CustomerAddress
+import com.personaldev.commodities.domain.customer.Phone
 import com.personaldev.commodities.domain.exceptions.UserNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class CustomerService {
+class CustomerService extends BaseService {
 
     @Autowired
-    CustomerDao userDao
+    AddressDao addressDao
 
-    Customer getUser(String email) throws UserNotFoundException {
-        Customer user = userDao.getUserByEmail(email)
-        if(!user) {
-            throw new UserNotFoundException("${email}' not found in Customer table.")
+    @Autowired
+    CustomerDao customerDao
+
+    @Autowired
+    PhoneDao phoneDao
+
+    Customer getCustomer(String email) throws UserNotFoundException {
+        Customer customer
+        customer = getCustomerData(email)
+        customer.phoneList = getPhoneList(email)
+
+        if(customer.customerAddressId) {
+            customer.addressList = getAddressList(customer.customerAddressId)
         }
 
-        return user
+        return customer
+    }
+
+    protected Customer getCustomerData(String email) {
+        Customer customer = customerDao.getUserByEmail(email)
+        if(!customer) {
+            throw new UserNotFoundException("${email}' not found in Customer table.")
+        }
+    }
+
+    protected List<CustomerAddress> getAddressList(String customerAddressId) {
+        return addressDao.getCustomerAddress(customerAddressId)
+    }
+
+    protected List<Phone> getPhoneList(String email) {
+        try {
+            phoneDao.getCustomerPhoneList(email)
+        } catch (DaoSelectException) {
+            logger.error("Error retrieving phone number for ${email}.")
+            return null
+        }
     }
 }
