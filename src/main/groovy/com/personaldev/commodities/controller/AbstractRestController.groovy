@@ -1,6 +1,7 @@
 package com.personaldev.commodities.controller
 
-import com.personaldev.commodities.domain.exceptions.DaoSelectException
+
+import com.personaldev.commodities.domain.exceptions.DataNotFoundException
 import com.personaldev.commodities.domain.exceptions.ErrorResponse
 import com.personaldev.commodities.domain.exceptions.UserNotFoundException
 import groovy.transform.CompileStatic
@@ -20,17 +21,33 @@ abstract trait AbstractRestController {
     @Autowired
     private HttpServletRequest context
 
+
+    /************************************************************************************************
+        404 RESPONSE CODES
+    *************************************************************************************************/
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = DataNotFoundException)
+    @ResponseBody
+    handleDataNotFoundException(Exception exception) {
+        new ErrorResponse(exception, 401001, "Data not found")
+    }
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(value = UserNotFoundException)
     @ResponseBody
     handleUserNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 401001, "Customer not found")
+        new ErrorResponse(exception, 401002, "Customer not found")
     }
 
+
+    /************************************************************************************************
+        500 RESPONSE CODES
+     *************************************************************************************************/
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception)
     @ResponseBody
     handleGenericException(Exception exception) {
-        new ErrorResponse(exception, 900000, "Unexpected server error occurred. Someting went wong!")
+        new ErrorResponse(exception, 900000, "Unexpected server error occurred.")
     }
+
 }

@@ -1,7 +1,7 @@
 package com.personaldev.commodities.dao
 
 import com.personaldev.commodities.domain.customer.Phone
-import com.personaldev.commodities.domain.exceptions.DaoSelectException
+import com.personaldev.commodities.domain.exceptions.DataNotFoundException
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.IncorrectResultSizeDataAccessException
@@ -22,10 +22,10 @@ class PhoneDao {
         try {
             jdbcTemplate.queryForList(SELECT_CUSTOMER_PHONE_LIST, new BeanPropertyRowMapper(Phone.class), customerEmail)
         } catch (IncorrectResultSizeDataAccessException e) {
-            return null
+            throw new DataNotFoundException(e.message)
         } catch (Exception e) {
-            //log.error("*** Error - PhoneDao.getCustomerPhoneList() - ${e.dump()}")
-            throw new DaoSelectException(this.class.toString(), e.message)
+            log.error("-- PhoneDao: getCustomerPhoneList($customerEmail). Exception message: $e.message")
+            throw new Exception(e.message)
         }
     }
 }

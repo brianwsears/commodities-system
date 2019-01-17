@@ -46,11 +46,6 @@ class CustomerService extends BaseService {
     }
 
     protected List<Phone> getPhoneList(String email) {
-        try {
-            phoneDao.getCustomerPhoneList(email)
-        } catch (DaoSelectException) {
-            logger.error("Error retrieving phone number for ${email}.")
-            return null
-        }
+        phoneDao.getCustomerPhoneList(email)
     }
 }
