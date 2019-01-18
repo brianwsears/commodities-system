@@ -15,7 +15,8 @@ class MockBuilder {
                 nickname: "The Legend",
                 age: 34,
                 gender: "Male",
-                addressList: buildCustomerAddressList()
+                addressList: buildCustomerAddressList(),
+                phoneList: buildCustomerPhoneList()
         )
     }
 
@@ -32,11 +33,10 @@ class MockBuilder {
         )
     }
 
-    static final CustomerPhone buildCustomerPhone(long phoneNumber, String type, String email) {
+    static final CustomerPhone buildCustomerPhone(long phoneNumber, String type) {
         return new CustomerPhone(
                 phoneNumber: phoneNumber,
-                type: type,
-                customerEmail: email
+                type: type
         )
     }
 
@@ -49,11 +49,11 @@ class MockBuilder {
         customerAddressList
     }
 
-    static final List<CustomerPhone> buildPhoneList() {
+    static final List<CustomerPhone> buildCustomerPhoneList() {
         List<CustomerPhone> customerPhoneList = new ArrayList<>()
 
-        customerPhoneList << buildCustomerPhone(5731234456, PhoneType.HOME.toString(), "picklesmcgee@gmail.com")
-        customerPhoneList << buildCustomerPhone(8864932223, PhoneType.WORK.toString(), "timmywoot100@gmail.com")
+        customerPhoneList << buildCustomerPhone(5731234456, PhoneType.HOME.toString())
+        customerPhoneList << buildCustomerPhone(8864932223, PhoneType.WORK.toString())
 
         customerPhoneList
     }

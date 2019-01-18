@@ -7,5 +7,4 @@ class CustomerPhone {
 
     long phoneNumber
     String type
-    String customerEmail
 }

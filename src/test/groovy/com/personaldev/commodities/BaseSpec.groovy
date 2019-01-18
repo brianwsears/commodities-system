@@ -14,6 +14,6 @@ class BaseSpec extends Specification {
     def setup() {
         mockCustomer                    = MockBuilder.buildCustomer()
         mockCustomerAddressList         = MockBuilder.buildCustomerAddressList()
-        mockCustomerPhoneList           = MockBuilder.buildPhoneList()
+        mockCustomerPhoneList           = MockBuilder.buildCustomerPhoneList()
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class CustomerPhoneDao extends BaseDao {
 
-    static final String SELECT_CUSTOMER_PHONE_LIST = """select * from phone where phone.customer_email = ?"""
+    static final String SELECT_CUSTOMER_PHONE_LIST = """select phone_number, type from phone where phone.customer_email = ?"""
 
     List<CustomerPhone> getCustomerPhoneList(String email) {
         try {
