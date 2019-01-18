@@ -3,9 +3,9 @@ package com.personaldev.commodities.domain.customer
 import groovy.transform.ToString
 
 @ToString
-class Phone {
+class CustomerPhone {
 
-    int phoneNumber
+    long phoneNumber
     String type
     String customerEmail
 }

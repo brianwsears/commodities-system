@@ -1,9 +1,6 @@
 package com.personaldev.commodities.controller
 
-
-import com.personaldev.commodities.domain.exceptions.DataNotFoundException
-import com.personaldev.commodities.domain.exceptions.ErrorResponse
-import com.personaldev.commodities.domain.exceptions.UserNotFoundException
+import com.personaldev.commodities.domain.exceptions.*
 import groovy.transform.CompileStatic
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -33,10 +30,24 @@ abstract trait AbstractRestController {
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(value = UserNotFoundException)
+    @ExceptionHandler(value = AddressNotFoundException)
+    @ResponseBody
+    handleAddressNotFoundException(Exception exception) {
+        new ErrorResponse(exception, 401002, "Address not found")
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = CustomerNotFoundException)
     @ResponseBody
     handleUserNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 401002, "Customer not found")
+        new ErrorResponse(exception, 401003, "Customer not found")
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = PhoneNotFoundException)
+    @ResponseBody
+    handlePhoneNotFoundException(Exception exception) {
+        new ErrorResponse(exception, 401004, "CustomerPhone not found")
     }
 
 

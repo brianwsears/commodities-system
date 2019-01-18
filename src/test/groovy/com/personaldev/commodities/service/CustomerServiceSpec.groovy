@@ -1,9 +1,10 @@
 package com.personaldev.commodities.service
 
 import com.personaldev.commodities.BaseSpec
+import com.personaldev.commodities.dao.CustomerAddressDao
 import com.personaldev.commodities.dao.CustomerDao
+import com.personaldev.commodities.dao.CustomerPhoneDao
 import com.personaldev.commodities.domain.customer.Customer
-import com.personaldev.commodities.domain.exceptions.UserNotFoundException
 
 class CustomerServiceSpec extends BaseSpec {
 
@@ -11,25 +12,20 @@ class CustomerServiceSpec extends BaseSpec {
 
     def setup() {
         service = new CustomerService(
-                customerDao: Mock(CustomerDao)
+                customerDao: Mock(CustomerDao),
+                addressDao: Mock(CustomerAddressDao),
+                phoneDao: Mock(CustomerPhoneDao)
         )
     }
 
-    def "getUser returns a Customer object"() {
+    def "getCustomer returns a Customer object"() {
         given:
-            service.customerDao.getUserByEmail("email") >> mockCustomer
+            service.customerDao.getUserByEmail(_) >> mockCustomer
+            service.addressDao.getCustomerAddress(_) >> mockCustomerAddressList
+            service.phoneDao.getCustomerPhoneList(_) >> mockCustomerPhoneList
         when:
             def response = service.getCustomer("email")
         then:
             response instanceof Customer
-    }
-
-    def "getUser throws UserNotFoundException when no user is found"() {
-        given:
-            service.customerDao.getUserByEmail("email") >> null
-        when:
-            service.getCustomer("email")
-        then:
-            thrown(UserNotFoundException)
     }
 }

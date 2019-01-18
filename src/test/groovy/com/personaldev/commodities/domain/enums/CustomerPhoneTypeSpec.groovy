@@ -2,7 +2,7 @@ package com.personaldev.commodities.domain.enums
 
 import com.personaldev.commodities.BaseSpec
 
-class PhoneTypeSpec extends BaseSpec {
+class CustomerPhoneTypeSpec extends BaseSpec {
 
     def "PhoneType.HOME returns 'HOME'"() {
         when:
@@ -13,15 +13,15 @@ class PhoneTypeSpec extends BaseSpec {
 
     def "PhoneType.HOME returns 'MOBILE'"() {
         when:
-        def response = PhoneType.MOBILE.toString()
+            def response = PhoneType.MOBILE.toString()
         then:
         response == "MOBILE"
     }
 
     def "PhoneType.HOME returns 'WORK'"() {
         when:
-        def response = PhoneType.WORK.toString()
+            def response = PhoneType.WORK.toString()
         then:
-        response == "WORK"
+            response == "WORK"
     }
 }

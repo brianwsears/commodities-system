@@ -13,5 +13,5 @@ class Customer {
     String gender
     String customerAddressId
     List<CustomerAddress> addressList
-    List<Phone> phoneList
+    List<CustomerPhone> phoneList
 }

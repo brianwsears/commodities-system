@@ -2,7 +2,7 @@ package com.personaldev.commodities
 
 import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.domain.customer.CustomerAddress
-import com.personaldev.commodities.domain.customer.Phone
+import com.personaldev.commodities.domain.customer.CustomerPhone
 import com.personaldev.commodities.domain.enums.PhoneType
 
 class MockBuilder {
@@ -23,12 +23,20 @@ class MockBuilder {
         return new CustomerAddress(
                 addressId: id,
                 customerAddressId: 2002,
-                streetAddressLine1: "104 Pickles Drive",
-                streetAddressLine2: "Floor 99",
-                streetAddressLine3: "Suite 100",
+                streetAddress1: "104 Pickles Drive",
+                streetAddress2: "Floor 99",
+                streetAddress3: "Suite 100",
                 city: "Columbia",
                 state: "MO",
                 zipCode: "65201"
+        )
+    }
+
+    static final CustomerPhone buildCustomerPhone(long phoneNumber, String type, String email) {
+        return new CustomerPhone(
+                phoneNumber: phoneNumber,
+                type: type,
+                customerEmail: email
         )
     }
 
@@ -38,14 +46,15 @@ class MockBuilder {
         customerAddressList << buildCustomerAddress(1001)
         customerAddressList << buildCustomerAddress(1002)
 
-         customerAddressList
+        customerAddressList
     }
 
-    static final Phone buildPhone() {
-        return new Phone(
-                phoneNumber: 5732218874,
-                type: PhoneType.WORK.toString(),
-                customerEmail: "picklesmcgee@gmail.com"
-        )
+    static final List<CustomerPhone> buildPhoneList() {
+        List<CustomerPhone> customerPhoneList = new ArrayList<>()
+
+        customerPhoneList << buildCustomerPhone(5731234456, PhoneType.HOME.toString(), "picklesmcgee@gmail.com")
+        customerPhoneList << buildCustomerPhone(8864932223, PhoneType.WORK.toString(), "timmywoot100@gmail.com")
+
+        customerPhoneList
     }
 }

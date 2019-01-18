@@ -2,18 +2,18 @@ package com.personaldev.commodities
 
 import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.domain.customer.CustomerAddress
-import com.personaldev.commodities.domain.customer.Phone
+import com.personaldev.commodities.domain.customer.CustomerPhone
 import spock.lang.Specification
 
 class BaseSpec extends Specification {
 
     Customer mockCustomer
-    CustomerAddress mockCustomerAddress
-    Phone mockPhone
+    List<CustomerAddress> mockCustomerAddressList
+    List<CustomerPhone> mockCustomerPhoneList
 
     def setup() {
-        mockCustomer            = MockBuilder.buildCustomer()
-        mockCustomerAddress     = MockBuilder.buildCustomerAddress(1001)
-        mockPhone               = MockBuilder.buildPhone()
+        mockCustomer                    = MockBuilder.buildCustomer()
+        mockCustomerAddressList         = MockBuilder.buildCustomerAddressList()
+        mockCustomerPhoneList           = MockBuilder.buildPhoneList()
     }
 }

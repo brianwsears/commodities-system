@@ -1,12 +1,9 @@
 package com.personaldev.commodities.service
 
-import com.personaldev.commodities.dao.AddressDao
+import com.personaldev.commodities.dao.CustomerAddressDao
 import com.personaldev.commodities.dao.CustomerDao
-import com.personaldev.commodities.dao.PhoneDao
+import com.personaldev.commodities.dao.CustomerPhoneDao
 import com.personaldev.commodities.domain.customer.Customer
-import com.personaldev.commodities.domain.customer.CustomerAddress
-import com.personaldev.commodities.domain.customer.Phone
-import com.personaldev.commodities.domain.exceptions.UserNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -14,38 +11,19 @@ import org.springframework.stereotype.Service
 class CustomerService extends BaseService {
 
     @Autowired
-    AddressDao addressDao
+    CustomerAddressDao addressDao
 
     @Autowired
     CustomerDao customerDao
 
     @Autowired
-    PhoneDao phoneDao
+    CustomerPhoneDao phoneDao
 
-    Customer getCustomer(String email) throws UserNotFoundException {
-        Customer customer
-        customer = getCustomerData(email)
-        customer.phoneList = getPhoneList(email)
-
-        if(customer.customerAddressId) {
-            customer.addressList = getAddressList(customer.customerAddressId)
-        }
+    Customer getCustomer(String email) throws Exception {
+        Customer customer = customerDao.getUserByEmail(email)
+        customer.addressList = addressDao.getCustomerAddress(customer.customerAddressId)
+        customer.phoneList = phoneDao.getCustomerPhoneList(email)
 
         return customer
-    }
-
-    protected Customer getCustomerData(String email) {
-        Customer customer = customerDao.getUserByEmail(email)
-        if(!customer) {
-            throw new UserNotFoundException("${email}' not found in Customer table.")
-        }
-    }
-
-    protected List<CustomerAddress> getAddressList(String customerAddressId) {
-        return addressDao.getCustomerAddress(customerAddressId)
-    }
-
-    protected List<Phone> getPhoneList(String email) {
-        phoneDao.getCustomerPhoneList(email)
     }
 }
