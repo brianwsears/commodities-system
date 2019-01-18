@@ -11,7 +11,8 @@ import org.springframework.stereotype.Repository
 @Repository
 class CustomerAddressDao extends BaseDao {
 
-    static final String SELECT_CUSTOMER_ADDRESS = """select * from address where customer_address_id =?"""
+    static final String SELECT_CUSTOMER_ADDRESS = """select address_id, street_address_1, street_address_2, 
+                          street_address_3, city, state, zip_code from address where customer_address_id =?"""
 
     List<CustomerAddress> getCustomerAddress(String customerAddressId) {
         try {
