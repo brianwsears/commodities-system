@@ -26,7 +26,7 @@ abstract trait AbstractRestController {
     @ExceptionHandler(value = AddressNotFoundException)
     @ResponseBody
     handleAddressNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 401001, "Address not found")
+        new ErrorResponse(exception, 401001, "No address records found for customer.")
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -40,7 +40,7 @@ abstract trait AbstractRestController {
     @ExceptionHandler(value = PhoneNotFoundException)
     @ResponseBody
     handlePhoneNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 401003, "CustomerPhone not found")
+        new ErrorResponse(exception, 401003, "No phone records found for customer.")
     }
 
 
