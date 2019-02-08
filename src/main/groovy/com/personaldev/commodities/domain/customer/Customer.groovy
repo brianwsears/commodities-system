@@ -11,7 +11,6 @@ class Customer {
     String nickname
     int age
     String gender
-    String customerAddressId
     List<CustomerAddress> addressList
     List<CustomerPhone> phoneList
 }

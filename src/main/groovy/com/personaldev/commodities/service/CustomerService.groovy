@@ -21,7 +21,7 @@ class CustomerService extends BaseService {
 
     Customer getCustomer(String email) throws Exception {
         Customer customer = customerDao.getUserByEmail(email)
-        customer.addressList = addressDao.getCustomerAddress(customer.customerAddressId)
+        customer.addressList = addressDao.getCustomerAddress(email)
         customer.phoneList = phoneDao.getCustomerPhoneList(email)
 
         return customer
