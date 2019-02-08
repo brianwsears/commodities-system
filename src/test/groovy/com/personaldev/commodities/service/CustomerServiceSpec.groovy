@@ -21,7 +21,7 @@ class CustomerServiceSpec extends BaseSpec {
     def "getCustomer returns a Customer object"() {
         given:
             service.customerDao.getUserByEmail(_) >> mockCustomer
-            service.addressDao.getCustomerAddress(_) >> mockCustomerAddressList
+            service.addressDao.getCustomerAddressList(_) >> mockCustomerAddressList
             service.phoneDao.getCustomerPhoneList(_) >> mockCustomerPhoneList
         when:
             def response = service.getCustomer("email")
