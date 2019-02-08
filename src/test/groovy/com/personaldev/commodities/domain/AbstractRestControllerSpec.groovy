@@ -17,7 +17,7 @@ class AbstractRestControllerSpec extends BaseSpec {
         when:
             def response = mockAbstractRestController.handleUserNotFoundException(userNotFoundException)
         then:
-            response.errorCode == 401003
+            response.errorCode == 401002
             response.errorMessage == "Customer not found"
             response.detailedMessage == "timmywoot@gmail.com not found in Customer database."
     }
