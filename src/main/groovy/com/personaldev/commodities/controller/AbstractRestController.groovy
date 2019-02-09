@@ -31,18 +31,25 @@ abstract trait AbstractRestController {
 
     /************************************************************************************************
      409 RESPONSE CODES
-     *************************************************************************************************/
+     ************************************************************************************************/
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(value = CustomerAddressAlreadyExistsException)
+    @ResponseBody
+    handleCustomerAddressAlreadyExistsException(CustomerAddressAlreadyExistsException exception) {
+        new ErrorResponse(exception, 409001, "${exception.customerEmail} already has a ${exception.customerAddress.type} address.")
+    }
+
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(value = CustomerAlreadyExistsException)
     @ResponseBody
-    handleCustomeAlreadyExistsException(CustomerAlreadyExistsException exception) {
-        new ErrorResponse(exception, 409001, "User ${exception.customer} already exists.")
+    handleCustomerAlreadyExistsException(CustomerAlreadyExistsException exception) {
+        new ErrorResponse(exception, 409002, "User ${exception.customer} already exists.")
     }
 
 
     /************************************************************************************************
         500 RESPONSE CODES
-     *************************************************************************************************/
+     ************************************************************************************************/
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception)
     @ResponseBody

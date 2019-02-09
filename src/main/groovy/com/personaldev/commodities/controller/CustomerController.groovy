@@ -3,14 +3,10 @@ package com.personaldev.commodities.controller
 import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.domain.customer.CustomerAddress
 import com.personaldev.commodities.domain.customer.CustomerPhone
+import com.personaldev.commodities.service.CustomerAddressService
 import com.personaldev.commodities.service.CustomerService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/commodities-service/v1")
@@ -19,9 +15,19 @@ class CustomerController implements AbstractRestController {
     @Autowired
     CustomerService customerService
 
+    @Autowired
+    CustomerAddressService customerAddressService
+
     @PostMapping(path = "/user")
     Customer createCustomer(@RequestBody Customer customer) {
         customerService.createCustomer(customer)
+    }
+
+    @PostMapping(path = "/user/address/{customerEmail}")
+    CustomerAddress createCustomerAddress(
+                        @PathVariable(value = "customerEmail", required = true ) String customerEmail,
+                        @RequestBody CustomerAddress customerAddress) {
+        customerAddressService.createCustomerAddress(customerEmail, customerAddress)
     }
 
     @GetMapping(path = "/user/{customerEmail}")
@@ -31,7 +37,7 @@ class CustomerController implements AbstractRestController {
 
     @GetMapping(path = "/user/address/{customerEmail}")
     List<CustomerAddress> getCustomerAddressList(@PathVariable(value = "customerEmail", required = true) String customerEmail) {
-        customerService.getCustomerAddressList(customerEmail)
+        customerAddressService.getCustomerAddressList(customerEmail)
     }
 
     @GetMapping(path = "/user/phone/{customerEmail}")

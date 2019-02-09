@@ -19,7 +19,7 @@ class CustomerServiceSpec extends BaseSpec {
                 customerPhoneDao: Mock(CustomerPhoneDao)
         )
 
-        service.customerDao.getUserByEmail(_) >> mockCustomer
+        service.customerDao.getCustomer(_) >> mockCustomer
         service.customerAddressDao.getCustomerAddressList(_) >> mockCustomerAddressList
         service.customerPhoneDao.getCustomerPhoneList(_) >> mockCustomerPhoneList
     }

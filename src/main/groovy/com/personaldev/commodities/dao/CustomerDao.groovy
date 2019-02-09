@@ -15,7 +15,7 @@ class CustomerDao extends BaseDao {
 
     static final String INSERT_USER = """insert into customer (customer_email, first_name, last_name, nickname, age, gender) values (?,?,?,?,?,?);"""
 
-    Customer getUserByEmail(String customerEmail) {
+    Customer getCustomer(String customerEmail) {
         try {
             jdbcTemplate.queryForObject(SELECT_USER_BY_EMAIL, new BeanPropertyRowMapper(Customer.class), customerEmail)
         } catch (IncorrectResultSizeDataAccessException e) {
