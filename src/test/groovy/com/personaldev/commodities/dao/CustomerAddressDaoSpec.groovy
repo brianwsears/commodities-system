@@ -25,13 +25,15 @@ class CustomerAddressDaoSpec extends BaseSpec {
             response instanceof List<CustomerAddress>
     }
 
-    def "getCustomerAddressList throws AddressNotFoundException when database call throws IncorrectResultSizeDataAccessException"() {
+    def "getCustomerAddressList returns an empty list when no address records are found"() {
         given:
-            dao.jdbcTemplate.query(_,_,_) >> {throw new IncorrectResultSizeDataAccessException(0)}
+            List<CustomerAddress> emptyList = new ArrayList<>()
+            dao.jdbcTemplate.query(_,_,_) >> emptyList
         when:
-            dao.getCustomerAddressList(TEST_EMAIL)
+            List<CustomerAddress> customerAddressList = dao.getCustomerAddressList(TEST_EMAIL)
         then:
-            thrown(AddressNotFoundException)
+            noExceptionThrown()
+            customerAddressList.size() == 0
     }
 
     def "getCustomerAddressList throws Exception when database call throws Exception"() {

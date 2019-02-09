@@ -29,6 +29,7 @@ class CustomerDao extends BaseDao {
     Customer insertCustomer(Customer customer) {
         try {
             jdbcTemplate.update(INSERT_USER, customer.customerEmail, customer.firstName, customer.lastName, customer.nickname, customer.age, customer.gender)
+            return customer
         } catch (DataIntegrityViolationException e) {
             String errorMessage = "!!~ ERROR: $customer.customerEmail already exists in the database. ** Database Error Thrown: " + e.message
             throw new CustomerAlreadyExistsException(errorMessage, customer.customerEmail)

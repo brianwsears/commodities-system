@@ -22,24 +22,10 @@ abstract trait AbstractRestController {
         404 RESPONSE CODES
     *************************************************************************************************/
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(value = AddressNotFoundException)
-    @ResponseBody
-    handleAddressNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 404001, "No address records found for customer.")
-    }
-
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(value = CustomerNotFoundException)
     @ResponseBody
-    handleUserNotFoundException(CustomerNotFoundException exception) {
-        new ErrorResponse(exception, 404002, "Customer not found")
-    }
-
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(value = PhoneNotFoundException)
-    @ResponseBody
-    handlePhoneNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 404003, "No phone records found for customer.")
+    handleCustomerrNotFoundException(CustomerNotFoundException exception) {
+        new ErrorResponse(exception, 404001, "Customer not found.")
     }
 
 

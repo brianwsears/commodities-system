@@ -11,37 +11,15 @@ class AbstractRestControllerSpec extends BaseSpec {
     @Shared
     AbstractRestController mockAbstractRestController = new Object() as AbstractRestController
 
-    def 'AddressNotFoundException returns the correct ErrorResponse object'() {
-        given:
-            String detailedMessage = "No address records found for ${TEST_EMAIL}."
-            AddressNotFoundException addressNotFoundException = new AddressNotFoundException(detailedMessage, TEST_EMAIL)
-        when:
-            def response = mockAbstractRestController.handleAddressNotFoundException(addressNotFoundException)
-        then:
-            response.errorCode == 404001
-            response.errorMessage == "No address records found for customer."
-    }
-
-    def 'PhoneNotFoundException returns the correct ErrorResponse object'() {
-        given:
-            String detailedMessage = "${TEST_EMAIL} not found in Customer database."
-            CustomerNotFoundException userNotFoundException = new CustomerNotFoundException(detailedMessage, TEST_EMAIL)
-        when:
-            def response = mockAbstractRestController.handleUserNotFoundException(userNotFoundException)
-        then:
-            response.errorCode == 404002
-            response.errorMessage == "Customer not found"
-    }
-
     def 'UserNotFoundException returns the correct ErrorResponse object with a generic message'() {
         given:
-            String detailedMessage = "No phone records found for ${TEST_EMAIL}."
-            PhoneNotFoundException phoneNotFoundException = new PhoneNotFoundException(detailedMessage)
+            String detailedMessage = "Customer not found for ${TEST_EMAIL}."
+            CustomerNotFoundException customerNotFoundException = new CustomerNotFoundException(detailedMessage, TEST_EMAIL)
         when:
-            def response = mockAbstractRestController.handlePhoneNotFoundException(phoneNotFoundException)
+            def response = mockAbstractRestController.handleUserNotFoundException(customerNotFoundException)
         then:
-            response.errorCode == 404003
-            response.errorMessage == "No phone records found for customer."
+            response.errorCode == 404001
+            response.errorMessage == "Customer not found."
     }
 
     def 'Exception returns the correct ErrorResponse object'() {

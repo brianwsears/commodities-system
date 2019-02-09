@@ -1,6 +1,7 @@
 package com.personaldev.commodities.controller
 
 import com.personaldev.commodities.domain.customer.Customer
+import com.personaldev.commodities.domain.customer.CustomerAddress
 import com.personaldev.commodities.service.CustomerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,14 +18,18 @@ class CustomerController implements AbstractRestController {
     @Autowired
     CustomerService customerService
 
-    @GetMapping(path = "/user/{email}")
-    Customer getUser(@PathVariable(value = "email", required = true) String email) {
-        customerService.getCustomer(email)
-    }
-
     @PostMapping(path = "/user")
-    Customer createUser(@RequestBody Customer customer) {
+    Customer createCustomer(@RequestBody Customer customer) {
         customerService.createCustomer(customer)
     }
 
+    @GetMapping(path = "/user/{customerEmail}")
+    Customer getCustomer(@PathVariable(value = "customerEmail", required = true) String email) {
+        customerService.getCustomer(email)
+    }
+
+    @GetMapping(path = "/user/address/{customerEmail}")
+    List<CustomerAddress> getCustomerAddressList(@PathVariable(value = "customerEmail", required = true) String customerEmail) {
+        customerService.getCustomerAddressList(customerEmail)
+    }
 }
