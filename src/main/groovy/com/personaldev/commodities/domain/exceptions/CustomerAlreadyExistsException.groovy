@@ -1,10 +1,10 @@
 package com.personaldev.commodities.domain.exceptions
 
-class AddressNotFoundException extends RuntimeException {
+class CustomerAlreadyExistsException extends RuntimeException {
 
     String customer
 
-    AddressNotFoundException(String message, String customer) {
+    CustomerAlreadyExistsException(String message, String customer) {
         super(message)
         this.customer = customer
     }

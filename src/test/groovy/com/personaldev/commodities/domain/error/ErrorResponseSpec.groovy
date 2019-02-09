@@ -12,15 +12,14 @@ class ErrorResponseSpec extends BaseSpec {
         given:
             int errorCode = 400101
             String genericMessage = "Customer not found."
-            String detailedMessage = "testUser@commodities.com not found."
+            String detailedMessage = "${TEST_EMAIL} not found."
             String requestUri = "http://localhost:8080/commodities-service/customer/testUser@commoditeis.com"
-            CustomerNotFoundException customerNotFoundException = new CustomerNotFoundException(detailedMessage)
+            CustomerNotFoundException customerNotFoundException = new CustomerNotFoundException(detailedMessage, TEST_EMAIL)
         when:
             def result = new ErrorResponse(customerNotFoundException, errorCode, genericMessage, requestUri)
         then:
             result instanceof ErrorResponse
             result.errorCode == errorCode
-            result.detailedMessage == detailedMessage
             result.errorMessage == genericMessage
     }
 }

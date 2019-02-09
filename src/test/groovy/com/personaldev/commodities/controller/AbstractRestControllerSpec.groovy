@@ -13,38 +13,35 @@ class AbstractRestControllerSpec extends BaseSpec {
 
     def 'AddressNotFoundException returns the correct ErrorResponse object'() {
         given:
-            String detailedMessage = "No address records found for timmywoot@gmail.com."
-            AddressNotFoundException addressNotFoundException = new AddressNotFoundException(detailedMessage)
+            String detailedMessage = "No address records found for ${TEST_EMAIL}."
+            AddressNotFoundException addressNotFoundException = new AddressNotFoundException(detailedMessage, TEST_EMAIL)
         when:
             def response = mockAbstractRestController.handleAddressNotFoundException(addressNotFoundException)
         then:
-            response.errorCode == 401001
+            response.errorCode == 404001
             response.errorMessage == "No address records found for customer."
-            response.detailedMessage == "No address records found for timmywoot@gmail.com."
     }
 
     def 'PhoneNotFoundException returns the correct ErrorResponse object'() {
         given:
-            String detailedMessage = "timmywoot@gmail.com not found in Customer database."
-            CustomerNotFoundException userNotFoundException = new CustomerNotFoundException(detailedMessage)
+            String detailedMessage = "${TEST_EMAIL} not found in Customer database."
+            CustomerNotFoundException userNotFoundException = new CustomerNotFoundException(detailedMessage, TEST_EMAIL)
         when:
             def response = mockAbstractRestController.handleUserNotFoundException(userNotFoundException)
         then:
-            response.errorCode == 401002
+            response.errorCode == 404002
             response.errorMessage == "Customer not found"
-            response.detailedMessage == "timmywoot@gmail.com not found in Customer database."
     }
 
-    def 'UserNotFoundException returns the correct ErrorResponse object'() {
+    def 'UserNotFoundException returns the correct ErrorResponse object with a generic message'() {
         given:
-            String detailedMessage = "No phone records found for timmywoot@gmail.com."
+            String detailedMessage = "No phone records found for ${TEST_EMAIL}."
             PhoneNotFoundException phoneNotFoundException = new PhoneNotFoundException(detailedMessage)
         when:
             def response = mockAbstractRestController.handlePhoneNotFoundException(phoneNotFoundException)
         then:
-            response.errorCode == 401003
+            response.errorCode == 404003
             response.errorMessage == "No phone records found for customer."
-            response.detailedMessage == "No phone records found for timmywoot@gmail.com."
     }
 
     def 'Exception returns the correct ErrorResponse object'() {
@@ -56,6 +53,5 @@ class AbstractRestControllerSpec extends BaseSpec {
         then:
             response.errorCode == 900000
             response.errorMessage == "Unexpected server error occurred."
-            response.detailedMessage == "Error accessing the database."
     }
 }

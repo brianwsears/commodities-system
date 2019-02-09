@@ -12,4 +12,6 @@ class CustomerAddress {
     String city
     String state
     String zipCode
+    String type
+    Boolean mailingAddress
 }

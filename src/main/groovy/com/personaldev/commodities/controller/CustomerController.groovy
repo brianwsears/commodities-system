@@ -5,6 +5,8 @@ import com.personaldev.commodities.service.CustomerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -19,4 +21,10 @@ class CustomerController implements AbstractRestController {
     Customer getUser(@PathVariable(value = "email", required = true) String email) {
         customerService.getCustomer(email)
     }
+
+    @PostMapping(path = "/user")
+    Customer createUser(@RequestBody Customer customer) {
+        customerService.createCustomer(customer)
+    }
+
 }

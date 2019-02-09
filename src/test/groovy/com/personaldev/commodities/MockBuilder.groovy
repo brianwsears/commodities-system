@@ -28,7 +28,9 @@ class MockBuilder {
                 streetAddress3: "Suite 100",
                 city: "Columbia",
                 state: "MO",
-                zipCode: "65201"
+                zipCode: "65201",
+                type: "Home",
+                mailingAddress: 0
         )
     }
 

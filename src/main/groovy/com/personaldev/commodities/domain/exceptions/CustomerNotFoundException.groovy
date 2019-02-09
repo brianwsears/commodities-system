@@ -2,7 +2,10 @@ package com.personaldev.commodities.domain.exceptions
 
 class CustomerNotFoundException extends RuntimeException {
 
-    CustomerNotFoundException(String message) {
+    String customer
+
+    CustomerNotFoundException(String message, String customer) {
         super(message)
+        this.customer = customer
     }
 }

@@ -18,7 +18,6 @@ abstract trait AbstractRestController {
     @Autowired
     private HttpServletRequest context
 
-
     /************************************************************************************************
         404 RESPONSE CODES
     *************************************************************************************************/
@@ -26,21 +25,32 @@ abstract trait AbstractRestController {
     @ExceptionHandler(value = AddressNotFoundException)
     @ResponseBody
     handleAddressNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 401001, "No address records found for customer.")
+        new ErrorResponse(exception, 404001, "No address records found for customer.")
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(value = CustomerNotFoundException)
     @ResponseBody
-    handleUserNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 401002, "Customer not found")
+    handleUserNotFoundException(CustomerNotFoundException exception) {
+        new ErrorResponse(exception, 404002, "Customer not found")
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(value = PhoneNotFoundException)
     @ResponseBody
     handlePhoneNotFoundException(Exception exception) {
-        new ErrorResponse(exception, 401003, "No phone records found for customer.")
+        new ErrorResponse(exception, 404003, "No phone records found for customer.")
+    }
+
+
+    /************************************************************************************************
+     409 RESPONSE CODES
+     *************************************************************************************************/
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(value = CustomerAlreadyExistsException)
+    @ResponseBody
+    handleCustomeAlreadyExistsException(CustomerAlreadyExistsException exception) {
+        new ErrorResponse(exception, 409001, "User ${exception.customer} already exists.")
     }
 
 

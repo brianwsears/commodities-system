@@ -7,6 +7,8 @@ import spock.lang.Specification
 
 class BaseSpec extends Specification {
 
+    static final String TEST_EMAIL      = "timmywoot@gmail.com"
+
     Customer mockCustomer
     List<CustomerAddress> mockCustomerAddressList
     List<CustomerPhone> mockCustomerPhoneList

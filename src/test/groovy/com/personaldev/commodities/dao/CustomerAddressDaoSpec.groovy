@@ -20,7 +20,7 @@ class CustomerAddressDaoSpec extends BaseSpec {
         given:
             dao.jdbcTemplate.query(_,_,_) >> mockCustomerAddressList
         when:
-            def response = dao.getCustomerAddressList("testemail@gmail.com")
+            def response = dao.getCustomerAddressList(TEST_EMAIL)
         then:
             response instanceof List<CustomerAddress>
     }
@@ -29,7 +29,7 @@ class CustomerAddressDaoSpec extends BaseSpec {
         given:
             dao.jdbcTemplate.query(_,_,_) >> {throw new IncorrectResultSizeDataAccessException(0)}
         when:
-            dao.getCustomerAddressList("testemail@gmail.com")
+            dao.getCustomerAddressList(TEST_EMAIL)
         then:
             thrown(AddressNotFoundException)
     }
@@ -38,7 +38,7 @@ class CustomerAddressDaoSpec extends BaseSpec {
         given:
             dao.jdbcTemplate.query(_,_,_) >> {throw new Exception("Something went wrong.")}
         when:
-            dao.getCustomerAddressList("testemail@gmail.com")
+            dao.getCustomerAddressList(TEST_EMAIL)
         then:
             thrown(Exception)
     }

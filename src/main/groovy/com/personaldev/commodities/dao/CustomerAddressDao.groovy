@@ -2,25 +2,22 @@ package com.personaldev.commodities.dao
 
 import com.personaldev.commodities.domain.customer.CustomerAddress
 import com.personaldev.commodities.domain.exceptions.AddressNotFoundException
-import groovy.util.logging.Slf4j
 import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.jdbc.core.BeanPropertyRowMapper
 import org.springframework.stereotype.Repository
 
-@Slf4j
 @Repository
 class CustomerAddressDao extends BaseDao {
 
     static final String SELECT_CUSTOMER_ADDRESS = """select * from address where customer_email = ?"""
 
-    List<CustomerAddress> getCustomerAddressList(String email) {
+    List<CustomerAddress> getCustomerAddressList(String customerEmail) {
         try {
-            jdbcTemplate.query(SELECT_CUSTOMER_ADDRESS, new BeanPropertyRowMapper(CustomerAddress.class), email)
+            jdbcTemplate.query(SELECT_CUSTOMER_ADDRESS, new BeanPropertyRowMapper(CustomerAddress.class), customerEmail)
         } catch (IncorrectResultSizeDataAccessException e) {
-            log.error("Address record not found for ${email}")
-            throw new AddressNotFoundException(e.message)
+            String errorMessage = "!!~ ERROR: No address records found for $customerEmail. ** Database Error Thrown: " + e.message
+            throw new AddressNotFoundException(errorMessage, customerEmail)
         } catch (Exception e) {
-            log.error("-- AddressDao: getCustomerAddressList($email). Exception message: $e.message")
             throw new Exception(e.message)
         }
     }

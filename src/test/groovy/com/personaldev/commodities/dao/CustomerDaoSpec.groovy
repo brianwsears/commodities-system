@@ -20,7 +20,7 @@ class CustomerDaoSpec extends BaseSpec {
         given:
             dao.jdbcTemplate.queryForObject(_,_,_) >> mockCustomer
         when:
-            def response = dao.getUserByEmail("testemail@gmail.com")
+            def response = dao.getUserByEmail(TEST_EMAIL)
         then:
             response instanceof Customer
     }
@@ -29,7 +29,7 @@ class CustomerDaoSpec extends BaseSpec {
         given:
             dao.jdbcTemplate.queryForObject(_,_,_) >> {throw new IncorrectResultSizeDataAccessException(0)}
         when:
-            dao.getUserByEmail("testemail@gmail.com")
+            dao.getUserByEmail(TEST_EMAIL)
         then:
             thrown(CustomerNotFoundException)
     }
@@ -38,7 +38,7 @@ class CustomerDaoSpec extends BaseSpec {
         given:
             dao.jdbcTemplate.queryForObject(_,_,_) >> {throw new Exception("Something went wrong.")}
         when:
-            dao.getUserByEmail("testemail@gmail.com")
+            dao.getUserByEmail(TEST_EMAIL)
         then:
             thrown(Exception)
     }
