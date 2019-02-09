@@ -5,6 +5,7 @@ import com.personaldev.commodities.dao.CustomerDao
 import com.personaldev.commodities.dao.CustomerPhoneDao
 import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.domain.customer.CustomerAddress
+import com.personaldev.commodities.domain.customer.CustomerPhone
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -35,5 +36,9 @@ class CustomerService extends BaseService {
 
     List<CustomerAddress> getCustomerAddressList(String customerEmail) throws Exception {
         customerAddressDao.getCustomerAddressList(customerEmail)
+    }
+
+    List<CustomerPhone> getCustomerPhoneList(String customerEmail) throws Exception {
+        customerPhoneDao.getCustomerPhoneList(customerEmail)
     }
 }
