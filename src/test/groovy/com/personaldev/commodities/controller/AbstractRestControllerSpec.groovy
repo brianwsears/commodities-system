@@ -16,7 +16,7 @@ class AbstractRestControllerSpec extends BaseSpec {
             String detailedMessage = "Customer not found for ${TEST_EMAIL}."
             CustomerNotFoundException customerNotFoundException = new CustomerNotFoundException(detailedMessage, TEST_EMAIL)
         when:
-            def response = mockAbstractRestController.handleUserNotFoundException(customerNotFoundException)
+            def response = mockAbstractRestController.handleCustomerrNotFoundException(customerNotFoundException)
         then:
             response.errorCode == 404001
             response.errorMessage == "Customer not found."
