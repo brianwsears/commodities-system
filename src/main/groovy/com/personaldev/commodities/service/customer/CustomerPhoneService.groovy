@@ -1,6 +1,7 @@
 package com.personaldev.commodities.service.customer
 
 import com.personaldev.commodities.dao.CustomerPhoneDao
+import com.personaldev.commodities.domain.customer.CustomerAddress
 import com.personaldev.commodities.domain.customer.CustomerPhone
 import com.personaldev.commodities.service.BaseService
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,6 +12,10 @@ class CustomerPhoneService extends BaseService {
 
     @Autowired
     CustomerPhoneDao customerPhoneDao
+
+    CustomerAddress createCustomerPhone(String customerEmail, CustomerPhone customerPhone) throws Exception {
+        customerPhoneDao.insertCustomerPhone(customerEmail, customerPhone)
+    }
 
     List<CustomerPhone> getCustomerPhoneList(String customerEmail) throws Exception {
         customerPhoneDao.getCustomerPhoneList(customerEmail)

@@ -5,6 +5,6 @@ import groovy.transform.ToString
 @ToString
 class CustomerPhone {
 
-    long phoneNumber
+    String phoneNumber
     String type
 }

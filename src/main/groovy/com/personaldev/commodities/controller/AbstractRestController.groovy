@@ -46,6 +46,13 @@ abstract trait AbstractRestController {
         new ErrorResponse(exception, 409002, "User ${exception.customer} already exists.")
     }
 
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(value = CustomerPhoneAlreadyExistsException)
+    @ResponseBody
+    handleCustomerPhoneAlreadyExistsException(CustomerPhoneAlreadyExistsException exception) {
+        new ErrorResponse(exception, 409003, "Phone number already in use.")
+    }
+
 
     /************************************************************************************************
         500 RESPONSE CODES

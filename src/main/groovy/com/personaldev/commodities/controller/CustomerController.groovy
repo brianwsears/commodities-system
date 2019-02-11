@@ -4,6 +4,7 @@ import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.domain.customer.CustomerAddress
 import com.personaldev.commodities.domain.customer.CustomerPhone
 import com.personaldev.commodities.service.customer.CustomerAddressService
+import com.personaldev.commodities.service.customer.CustomerPhoneService
 import com.personaldev.commodities.service.customer.CustomerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -18,6 +19,10 @@ class CustomerController implements AbstractRestController {
     @Autowired
     CustomerAddressService customerAddressService
 
+    @Autowired
+    CustomerPhoneService customerPhoneService
+
+
     @PostMapping(path = "/user")
     Customer createCustomer(@RequestBody Customer customer) {
         customerService.createCustomer(customer)
@@ -28,6 +33,13 @@ class CustomerController implements AbstractRestController {
                         @PathVariable(value = "customerEmail", required = true ) String customerEmail,
                         @RequestBody CustomerAddress customerAddress) {
         customerAddressService.createCustomerAddress(customerEmail, customerAddress)
+    }
+
+    @PostMapping(path = "/user/phone/{customerEmail}")
+    CustomerPhone createCustomerPhone(
+                        @PathVariable(value = "customerEmail", required = true ) String customerEmail,
+                        @RequestBody CustomerPhone customerPhone) {
+        customerPhoneService.createCustomerPhone(customerEmail, customerPhone)
     }
 
     @GetMapping(path = "/user/{customerEmail}")

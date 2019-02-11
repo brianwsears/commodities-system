@@ -10,6 +10,7 @@ class MockBuilder {
     static final Customer buildCustomer() {
         return new Customer(
                 customerEmail: "testCustomer@gmail.com",
+                createDate: "2019-02-10 21:09:00",
                 firstName: "Timmy",
                 lastName: "Woot",
                 nickname: "The Legend",
@@ -33,7 +34,7 @@ class MockBuilder {
         )
     }
 
-    static final CustomerPhone buildCustomerPhone(long phoneNumber, String type) {
+    static final CustomerPhone buildCustomerPhone(String phoneNumber, String type) {
         return new CustomerPhone(
                 phoneNumber: phoneNumber,
                 type: type
@@ -52,8 +53,8 @@ class MockBuilder {
     static final List<CustomerPhone> buildCustomerPhoneList() {
         List<CustomerPhone> customerPhoneList = new ArrayList<>()
 
-        customerPhoneList << buildCustomerPhone(5731234456, PhoneType.HOME.toString())
-        customerPhoneList << buildCustomerPhone(8864932223, PhoneType.WORK.toString())
+        customerPhoneList << buildCustomerPhone("5731234456", PhoneType.HOME.toString())
+        customerPhoneList << buildCustomerPhone("8864932223", PhoneType.WORK.toString())
 
         customerPhoneList
     }
