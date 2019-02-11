@@ -12,9 +12,9 @@ class ErrorResponse {
     public final String errorMessage
     public final int errorCode
 
-    ErrorResponse(Exception ex, Integer errorCode, String genericMessage, String requestUri = "") {
+    ErrorResponse(Exception exception, Integer errorCode, String genericMessage, String requestUri = "") {
         this.errorCode = errorCode
         this.errorMessage = genericMessage
-        log.error("$ex.message \n $requestUri")
+        log.error(exception.getMessage())
     }
 }

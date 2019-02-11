@@ -7,4 +7,5 @@ class BaseDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate
+
 }

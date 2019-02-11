@@ -1,8 +1,8 @@
 package com.personaldev.commodities.dao
 
 import com.personaldev.commodities.domain.customer.CustomerAddress
-import org.springframework.dao.DataIntegrityViolationException
-import org.springframework.dao.IncorrectResultSizeDataAccessException
+import com.personaldev.commodities.domain.exceptions.CustomerAddressAlreadyExistsException
+import org.springframework.dao.DuplicateKeyException
 import org.springframework.jdbc.core.BeanPropertyRowMapper
 import org.springframework.stereotype.Repository
 
@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository
 class CustomerAddressDao extends BaseDao {
 
     static final String SELECT_CUSTOMER_ADDRESS = """select * from address where customer_email = ?;"""
-
-    static final String SELECT_CUSTOMER_ADDRESS_BY_TYPE = """select * from address where customer_email = ? and type = ?;"""
 
     static final String INSERT_CUSTOMER_ADDRESS = """insert into address (
                                                         street_address1, street_address2, street_address3, city, state, zip_code, customer_email, type, mailing_address)
@@ -22,8 +20,14 @@ class CustomerAddressDao extends BaseDao {
             jdbcTemplate.update(INSERT_CUSTOMER_ADDRESS, customerAddress.streetAddress1, customerAddress.streetAddress2, customerAddress.streetAddress3,
                 customerAddress.city, customerAddress.state, customerAddress.zipCode, customerEmail, customerAddress.type, customerAddress.mailingAddress)
             return customerAddress
-        } catch (Exception e) {
-            throw new Exception(e.message)
+        } catch (DuplicateKeyException e) {
+            throw new CustomerAddressAlreadyExistsException(e.message, customerEmail, customerAddress)
+        }
+        catch (Exception e) {
+            String detailedMessage = this.getClass().toString()  +
+                    " - insertCustomerAddress($customerEmail}" +
+                    " - CAUSE: ${e.dump()}"
+            throw new Exception(detailedMessage)
         }
     }
 
@@ -31,18 +35,10 @@ class CustomerAddressDao extends BaseDao {
         try {
             jdbcTemplate.query(SELECT_CUSTOMER_ADDRESS, new BeanPropertyRowMapper(CustomerAddress.class), customerEmail)
         } catch (Exception e) {
-            throw new Exception(e.message)
-        }
-    }
-
-    CustomerAddress getCustomerAddressByType(String customerEmail, String type) {
-        try {
-            jdbcTemplate.queryForObject(SELECT_CUSTOMER_ADDRESS_BY_TYPE, new BeanPropertyRowMapper(CustomerAddress.class), customerEmail, type)
-        } catch(IncorrectResultSizeDataAccessException e) {
-            return null
-        }
-        catch (Exception e) {
-            throw new Exception(e.message)
+            String detailedMessage = this.getClass().toString()  +
+                    " - getCustomerAddressList($customerEmail}" +
+                    " - CAUSE: ${e.dump()}"
+            throw new Exception(detailedMessage)
         }
     }
 }

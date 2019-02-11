@@ -18,7 +18,10 @@ class CustomerPhoneDao extends BaseDao {
             String errorMessage = "!!~ ERROR: No phone records found for $customerEmail. ** Database Error Thrown: " + e.message
             throw new PhoneNotFoundException(errorMessage)
         } catch (Exception e) {
-            throw new Exception(e.message)
+            String detailedMessage = this.getClass().toString()  +
+                    " - getCustomerPhoneList($customerEmail}" +
+                    " - CAUSE: ${e.dump()}"
+            throw new Exception(detailedMessage)
         }
     }
 }

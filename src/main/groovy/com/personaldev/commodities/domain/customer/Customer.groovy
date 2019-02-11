@@ -6,6 +6,7 @@ import groovy.transform.ToString
 class Customer {
 
     String customerEmail
+    Date createDate
     String firstName
     String lastName
     String nickname

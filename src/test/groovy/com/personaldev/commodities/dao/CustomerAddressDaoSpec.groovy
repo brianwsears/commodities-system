@@ -2,8 +2,6 @@ package com.personaldev.commodities.dao
 
 import com.personaldev.commodities.BaseSpec
 import com.personaldev.commodities.domain.customer.CustomerAddress
-import com.personaldev.commodities.domain.exceptions.AddressNotFoundException
-import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.jdbc.core.JdbcTemplate
 
 class CustomerAddressDaoSpec extends BaseSpec {

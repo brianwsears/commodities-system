@@ -1,12 +1,11 @@
 package com.personaldev.commodities.service
 
 import com.personaldev.commodities.BaseSpec
-import com.personaldev.commodities.dao.CustomerAddressDao
 import com.personaldev.commodities.dao.CustomerDao
-import com.personaldev.commodities.dao.CustomerPhoneDao
 import com.personaldev.commodities.domain.customer.Customer
-import com.personaldev.commodities.domain.customer.CustomerAddress
-import com.personaldev.commodities.domain.customer.CustomerPhone
+import com.personaldev.commodities.service.customer.CustomerAddressService
+import com.personaldev.commodities.service.customer.CustomerPhoneService
+import com.personaldev.commodities.service.customer.CustomerService
 
 class CustomerServiceSpec extends BaseSpec {
 
@@ -15,13 +14,13 @@ class CustomerServiceSpec extends BaseSpec {
     def setup() {
         service = new CustomerService(
                 customerDao: Mock(CustomerDao),
-                customerAddressDao: Mock(CustomerAddressDao),
-                customerPhoneDao: Mock(CustomerPhoneDao)
+                customerAddressService: Mock(CustomerAddressService),
+                customerPhoneService: Mock(CustomerPhoneService)
         )
 
         service.customerDao.getCustomer(_) >> mockCustomer
-        service.customerAddressDao.getCustomerAddressList(_) >> mockCustomerAddressList
-        service.customerPhoneDao.getCustomerPhoneList(_) >> mockCustomerPhoneList
+        service.customerAddressService.getCustomerAddressList(_) >> mockCustomerAddressList
+        service.customerPhoneService.getCustomerPhoneList(_) >> mockCustomerPhoneList
     }
 
     def "getCustomer returns a Customer object"() {
@@ -31,17 +30,19 @@ class CustomerServiceSpec extends BaseSpec {
             response instanceof Customer
     }
 
-    def "getCustomerPhoneList returns a list of CustomerPhone objects"() {
-        when:
-            def response = service.getCustomerPhoneList(TEST_EMAIL)
-        then:
-            response instanceof List<CustomerPhone>
-    }
+    //TODO - Move to CustomerPhoneServiceSpec
+//    def "getCustomerPhoneList returns a list of CustomerPhone objects"() {
+//        when:
+//            def response = service.getCustomerPhoneList(TEST_EMAIL)
+//        then:
+//            response instanceof List<CustomerPhone>
+//    }
 
-    def "getCustomerAddressList returns a list of CustomerAddress objects"() {
-        when:
-            def response = service.getCustomerAddressList(TEST_EMAIL)
-        then:
-            response instanceof List<CustomerAddress>
-    }
+    //TODO - Move to CustomerAddressServiceSpec
+//    def "getCustomerAddressList returns a list of CustomerAddress objects"() {
+//        when:
+//            def response = service.getCustomerAddressList(TEST_EMAIL)
+//        then:
+//            response instanceof List<CustomerAddress>
+//    }
 }

@@ -3,8 +3,8 @@ package com.personaldev.commodities.controller
 import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.domain.customer.CustomerAddress
 import com.personaldev.commodities.domain.customer.CustomerPhone
-import com.personaldev.commodities.service.CustomerAddressService
-import com.personaldev.commodities.service.CustomerService
+import com.personaldev.commodities.service.customer.CustomerAddressService
+import com.personaldev.commodities.service.customer.CustomerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
@@ -42,6 +42,6 @@ class CustomerController implements AbstractRestController {
 
     @GetMapping(path = "/user/phone/{customerEmail}")
     List<CustomerPhone> getCustomerPhoneList(@PathVariable(value = "customerEmail", required = true) String customerEmail) {
-        customerService.getCustomerPhoneList(customerEmail)
+        customerService.customerPhoneService.getCustomerPhoneList(customerEmail)
     }
 }

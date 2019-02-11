@@ -13,28 +13,34 @@ class CustomerDao extends BaseDao {
 
     static final String SELECT_USER_BY_EMAIL = """select * from customer where customer.customer_email = ?"""
 
-    static final String INSERT_USER = """insert into customer (customer_email, first_name, last_name, nickname, age, gender) values (?,?,?,?,?,?);"""
+    static final String INSERT_USER = """insert into customer (customer_email, create_date, first_name, last_name, nickname, age, gender) values (?,?,?,?,?,?);"""
 
-    Customer getCustomer(String customerEmail) {
+    Customer getCustomer(String customerEmail) throws Exception {
         try {
             jdbcTemplate.queryForObject(SELECT_USER_BY_EMAIL, new BeanPropertyRowMapper(Customer.class), customerEmail)
         } catch (IncorrectResultSizeDataAccessException e) {
             String errorMessage = "!!~ ERROR: $customerEmail not found. ** Database Error Thrown: " + e.message
             throw new CustomerNotFoundException(errorMessage, customerEmail)
         } catch (Exception e) {
-            throw new Exception(e.message)
+            String detailedMessage = this.getClass().toString()  +
+                    " - getCustomer($customerEmail}" +
+                    " - CAUSE: ${e.dump()}"
+            throw new Exception(detailedMessage)
         }
     }
 
-    Customer insertCustomer(Customer customer) {
+    Customer insertCustomer(Customer customer) throws Exception {
         try {
-            jdbcTemplate.update(INSERT_USER, customer.customerEmail, customer.firstName, customer.lastName, customer.nickname, customer.age, customer.gender)
+            jdbcTemplate.update(INSERT_USER, customer.customerEmail, new Date(), customer.firstName, customer.lastName, customer.nickname, customer.age, customer.gender)
             return customer
         } catch (DataIntegrityViolationException e) {
             String errorMessage = "!!~ ERROR: $customer.customerEmail already exists in the database. ** Database Error Thrown: " + e.message
             throw new CustomerAlreadyExistsException(errorMessage, customer.customerEmail)
         } catch (Exception e) {
-            throw new Exception(e.message)
+            String detailedMessage = this.getClass().toString()  +
+                    " - insertCustomer($customer.customerEmail}" +
+                    " - CAUSE: ${e.dump()}"
+            throw new Exception(detailedMessage)
         }
     }
 }

@@ -22,7 +22,6 @@ class MockBuilder {
 
     static final CustomerAddress buildCustomerAddress(int id) {
         return new CustomerAddress(
-                addressId: id,
                 streetAddress1: "104 Pickles Drive",
                 streetAddress2: "Floor 99",
                 streetAddress3: "Suite 100",
