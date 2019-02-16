@@ -1,9 +1,8 @@
 package com.personaldev.commodities.dao
 
 import com.personaldev.commodities.BaseSpec
+import com.personaldev.commodities.domain.customer.CustomerAddress
 import com.personaldev.commodities.domain.customer.CustomerPhone
-import com.personaldev.commodities.domain.exceptions.PhoneNotFoundException
-import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.jdbc.core.JdbcTemplate
 
 class CustomerPhoneDaoSpec extends BaseSpec {
@@ -25,15 +24,16 @@ class CustomerPhoneDaoSpec extends BaseSpec {
             response instanceof List<CustomerPhone>
     }
 
-    def "getCustomerPhoneList throws PhoneNotFoundException when database call throws IncorrectResultSizeDataAccessException"() {
+    def "getCustomerPhoneList returns an empty list when no phone records are found"() {
         given:
-            dao.jdbcTemplate.query(_,_,_) >> {throw new IncorrectResultSizeDataAccessException(0)}
+            List<CustomerPhone> emptyList = new ArrayList<>()
+            dao.jdbcTemplate.query(_,_,_) >> emptyList
         when:
-            dao.getCustomerPhoneList("testemail@gmail.com")
+            List<CustomerAddress> customerPhoneList = dao.getCustomerPhoneList(TEST_EMAIL)
         then:
-            thrown(PhoneNotFoundException)
+            noExceptionThrown()
+            customerPhoneList.size() == 0
     }
-
     def "getCustomerPhoneList throws Exception when database call throws Exception"() {
         given:
             dao.jdbcTemplate.query(_,_,_) >> {throw new Exception("Something went wrong.")}

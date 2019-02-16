@@ -20,7 +20,7 @@ class CustomerDao extends BaseDao {
         try {
             jdbcTemplate.queryForObject(SELECT_USER_BY_EMAIL, new BeanPropertyRowMapper(Customer.class), customerEmail)
         } catch (IncorrectResultSizeDataAccessException e) {
-            throw new CustomerNotFoundException(errorMessage, customerEmail)
+            throw new CustomerNotFoundException(e.message, customerEmail)
         } catch (Exception e) {
             String detailedMessage = this.getClass().toString()  +
                     " - getCustomer($customerEmail}" +

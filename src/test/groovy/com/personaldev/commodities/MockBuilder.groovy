@@ -10,7 +10,7 @@ class MockBuilder {
     static final Customer buildCustomer() {
         return new Customer(
                 customerEmail: "testCustomer@gmail.com",
-                createDate: "2019-02-10 21:09:00",
+                createDate: new Date(),
                 firstName: "Timmy",
                 lastName: "Woot",
                 nickname: "The Legend",
