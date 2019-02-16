@@ -42,9 +42,14 @@ class CustomerController implements AbstractRestController {
         customerPhoneService.createCustomerPhone(customerEmail, customerPhone)
     }
 
+    @DeleteMapping(path = "/user/{customerEmail}")
+    void deleteCustomer(@PathVariable(value = "customerEmail", required = true) String customerEmail) {
+        customerService.removeCustomer(customerEmail)
+    }
+
     @GetMapping(path = "/user/{customerEmail}")
-    Customer getCustomer(@PathVariable(value = "customerEmail", required = true) String email) {
-        customerService.getCustomer(email)
+    Customer getCustomer(@PathVariable(value = "customerEmail", required = true) String customerEmail) {
+        customerService.getCustomer(customerEmail)
     }
 
     @GetMapping(path = "/user/address/{customerEmail}")

@@ -22,10 +22,14 @@ class CustomerService extends BaseService {
         customerDao.insertCustomer(customer)
     }
 
-    Customer getCustomer(String customerEmail) throws Exception {
-        Customer customer       = customerDao.getCustomer(customerEmail)
-        customer.addressList    = customerAddressService.getCustomerAddressList(customerEmail)
-        customer.phoneList      = customerPhoneService.getCustomerPhoneList(customerEmail)
+    void removeCustomer(String email) throws Exception {
+        customerDao.deleteCustomer(email)
+    }
+
+    Customer getCustomer(String email) throws Exception {
+        Customer customer       = customerDao.getCustomer(email)
+        customer.addressList    = customerAddressService.getCustomerAddressList(email)
+        customer.phoneList      = customerPhoneService.getCustomerPhoneList(email)
 
         return customer
     }

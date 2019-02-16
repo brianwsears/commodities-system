@@ -13,8 +13,22 @@ class CustomerDao extends BaseDao {
 
     static final String SELECT_USER_BY_EMAIL = """select * from customer where customer.customer_email = ?"""
 
+    static final String DELETE_USER = """delete from customer where customer_email = ?"""
+
     static final String INSERT_USER = """insert into customer (customer_email, create_date, first_name, last_name, nickname, age, gender) values (?,?,?,?,?,?,?);"""
 
+    void deleteCustomer(String customerEmail) throws Exception {
+        try {
+            jdbcTemplate.update(DELETE_USER, customerEmail)
+        } catch (DataIntegrityViolationException e) {
+            throw new CustomerAlreadyExistsException(errorMessage, customerEmail)
+        } catch (Exception e) {
+            String detailedMessage = this.getClass().toString()  +
+                    " - insertCustomer(customerEmail}" +
+                    " - CAUSE: ${e.dump()}"
+            throw new Exception(detailedMessage)
+        }
+    }
 
     Customer getCustomer(String customerEmail) throws Exception {
         try {
