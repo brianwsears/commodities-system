@@ -24,6 +24,7 @@ class CustomerService extends BaseService {
 
     void removeCustomer(String email) throws Exception {
         customerDao.deleteCustomer(email)
+        //TODO - Successful delete of customer should also remove their associated Address and Phone lists
     }
 
     Customer getCustomer(String email) throws Exception {
