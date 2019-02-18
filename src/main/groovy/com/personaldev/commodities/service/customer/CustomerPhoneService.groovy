@@ -13,7 +13,7 @@ class CustomerPhoneService extends BaseService {
     @Autowired
     CustomerPhoneDao customerPhoneDao
 
-    CustomerAddress createCustomerPhone(String customerEmail, CustomerPhone customerPhone) throws Exception {
+    CustomerPhone createCustomerPhone(String customerEmail, CustomerPhone customerPhone) throws Exception {
         customerPhoneDao.insertCustomerPhone(customerEmail, customerPhone)
     }
 

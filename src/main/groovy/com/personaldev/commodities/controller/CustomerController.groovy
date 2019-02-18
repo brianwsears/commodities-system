@@ -9,6 +9,8 @@ import com.personaldev.commodities.service.customer.CustomerService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
+import javax.validation.Valid
+
 @RestController
 @RequestMapping("/commodities-service/v1")
 class CustomerController implements AbstractRestController {
@@ -35,10 +37,11 @@ class CustomerController implements AbstractRestController {
         customerAddressService.createCustomerAddress(customerEmail, customerAddress)
     }
 
+
     @PostMapping(path = "/user/phone/{customerEmail}")
     CustomerPhone createCustomerPhone(
                         @PathVariable(value = "customerEmail", required = true ) String customerEmail,
-                        @RequestBody CustomerPhone customerPhone) {
+                        @RequestBody @Valid CustomerPhone customerPhone) {
         customerPhoneService.createCustomerPhone(customerEmail, customerPhone)
     }
 

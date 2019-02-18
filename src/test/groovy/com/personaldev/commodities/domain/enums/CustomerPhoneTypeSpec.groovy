@@ -4,24 +4,24 @@ import com.personaldev.commodities.BaseSpec
 
 class CustomerPhoneTypeSpec extends BaseSpec {
 
-    def "PhoneType.HOME returns 'HOME'"() {
+    def "PhoneType.HOME returns 'H'"() {
         when:
             def response = PhoneType.HOME.toString()
         then:
-            response == "HOME"
+            response == "H"
     }
 
-    def "PhoneType.HOME returns 'MOBILE'"() {
+    def "PhoneType.MOBILE returns 'M'"() {
         when:
             def response = PhoneType.MOBILE.toString()
         then:
-        response == "MOBILE"
+        response == "M"
     }
 
-    def "PhoneType.HOME returns 'WORK'"() {
+    def "PhoneType.WORK returns 'W'"() {
         when:
             def response = PhoneType.WORK.toString()
         then:
-            response == "WORK"
+            response == "W"
     }
 }

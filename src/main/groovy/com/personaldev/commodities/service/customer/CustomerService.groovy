@@ -20,6 +20,8 @@ class CustomerService extends BaseService {
 
     Customer createCustomer(Customer customer) throws Exception {
         customerDao.insertCustomer(customer)
+        Customer createdCustomer = customerDao.getCustomer(customer.customerEmail)
+        return createdCustomer
     }
 
     void removeCustomer(String email) throws Exception {
