@@ -1,14 +1,13 @@
 package com.personaldev.commodities.domain.enums
 
-enum AddressType {
+enum ProductType {
 
-    BUSINESS("Business"),
-    HOME("Home"),
-    MAILING("Mailing")
+    COFFEE("Coffee"),
+    TOBACCO("Tobacco")
 
     private String value;
 
-    AddressType(final String value) {
+    ProductType(final String value) {
         this.value = value;
     }
 

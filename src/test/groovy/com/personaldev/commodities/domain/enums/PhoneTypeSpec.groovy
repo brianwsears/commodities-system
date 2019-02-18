@@ -2,7 +2,7 @@ package com.personaldev.commodities.domain.enums
 
 import com.personaldev.commodities.BaseSpec
 
-class CustomerPhoneTypeSpec extends BaseSpec {
+class PhoneTypeSpec extends BaseSpec {
 
     def "PhoneType.HOME returns 'H'"() {
         when:
