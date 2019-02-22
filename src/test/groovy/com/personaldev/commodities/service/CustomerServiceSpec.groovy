@@ -1,7 +1,7 @@
 package com.personaldev.commodities.service
 
 import com.personaldev.commodities.BaseSpec
-import com.personaldev.commodities.dao.CustomerDao
+import com.personaldev.commodities.dao.customer.CustomerDao
 import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.service.customer.CustomerAddressService
 import com.personaldev.commodities.service.customer.CustomerPhoneService

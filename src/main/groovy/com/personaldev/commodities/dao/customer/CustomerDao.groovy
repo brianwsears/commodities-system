@@ -1,5 +1,6 @@
-package com.personaldev.commodities.dao
+package com.personaldev.commodities.dao.customer
 
+import com.personaldev.commodities.dao.BaseDao
 import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.domain.exceptions.CustomerAlreadyExistsException
 import com.personaldev.commodities.domain.exceptions.CustomerNotFoundException

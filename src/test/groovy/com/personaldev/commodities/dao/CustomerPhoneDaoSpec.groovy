@@ -1,6 +1,7 @@
 package com.personaldev.commodities.dao
 
 import com.personaldev.commodities.BaseSpec
+import com.personaldev.commodities.dao.customer.CustomerPhoneDao
 import com.personaldev.commodities.domain.customer.CustomerAddress
 import com.personaldev.commodities.domain.customer.CustomerPhone
 import org.springframework.jdbc.core.JdbcTemplate

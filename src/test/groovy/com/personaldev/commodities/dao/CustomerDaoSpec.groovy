@@ -1,6 +1,7 @@
 package com.personaldev.commodities.dao
 
 import com.personaldev.commodities.BaseSpec
+import com.personaldev.commodities.dao.customer.CustomerDao
 import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.domain.exceptions.CustomerNotFoundException
 import org.springframework.dao.IncorrectResultSizeDataAccessException

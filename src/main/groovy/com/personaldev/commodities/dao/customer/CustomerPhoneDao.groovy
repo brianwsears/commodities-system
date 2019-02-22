@@ -1,5 +1,6 @@
-package com.personaldev.commodities.dao
+package com.personaldev.commodities.dao.customer
 
+import com.personaldev.commodities.dao.BaseDao
 import com.personaldev.commodities.domain.customer.CustomerPhone
 import com.personaldev.commodities.domain.exceptions.CustomerPhoneAlreadyExistsException
 import org.springframework.dao.DuplicateKeyException

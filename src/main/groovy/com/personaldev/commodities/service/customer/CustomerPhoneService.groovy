@@ -1,7 +1,6 @@
 package com.personaldev.commodities.service.customer
 
-import com.personaldev.commodities.dao.CustomerPhoneDao
-import com.personaldev.commodities.domain.customer.CustomerAddress
+import com.personaldev.commodities.dao.customer.CustomerPhoneDao
 import com.personaldev.commodities.domain.customer.CustomerPhone
 import com.personaldev.commodities.service.BaseService
 import org.springframework.beans.factory.annotation.Autowired
