@@ -1,6 +1,6 @@
 package com.personaldev.commodities.domain.exceptions
 
-class CustomerAlreadyExistsException extends RuntimeException {
+class CustomerAlreadyExistsException extends Exception {
 
     String customer
 

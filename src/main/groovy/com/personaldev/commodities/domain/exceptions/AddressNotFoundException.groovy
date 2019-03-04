@@ -1,6 +1,6 @@
 package com.personaldev.commodities.domain.exceptions
 
-class AddressNotFoundException extends RuntimeException {
+class AddressNotFoundException extends Exception {
 
     String customer
 

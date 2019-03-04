@@ -4,6 +4,7 @@ import com.personaldev.commodities.dao.BaseDao
 import com.personaldev.commodities.domain.customer.Customer
 import com.personaldev.commodities.domain.exceptions.CustomerAlreadyExistsException
 import com.personaldev.commodities.domain.exceptions.CustomerNotFoundException
+import com.personaldev.commodities.domain.exceptions.CustomerPhoneNotFoundException
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.jdbc.core.BeanPropertyRowMapper
@@ -18,14 +19,12 @@ class CustomerDao extends BaseDao {
 
     static final String INSERT_USER = """insert into customer (customer_email, create_date, first_name, last_name, nickname, age, gender) values (?,?,?,?,?,?,?);"""
 
-    void deleteCustomer(String customerEmail) throws Exception {
+    int deleteCustomer(String customerEmail) throws Exception {
         try {
             jdbcTemplate.update(DELETE_USER, customerEmail)
-        } catch (DataIntegrityViolationException e) {
-            throw new CustomerAlreadyExistsException(errorMessage, customerEmail)
         } catch (Exception e) {
             String detailedMessage = this.getClass().toString()  +
-                    " - insertCustomer(customerEmail}" +
+                    " - deleteCustomer(customerEmail}" +
                     " - CAUSE: ${e.dump()}"
             throw new Exception(detailedMessage)
         }
@@ -49,7 +48,7 @@ class CustomerDao extends BaseDao {
             jdbcTemplate.update(INSERT_USER, customer.customerEmail, new Date(), customer.firstName, customer.lastName, customer.nickname, customer.age, customer.gender)
             return customer
         } catch (DataIntegrityViolationException e) {
-            throw new CustomerAlreadyExistsException(errorMessage, customer.customerEmail)
+            throw new CustomerAlreadyExistsException(e.message, customer.customerEmail)
         } catch (Exception e) {
             String detailedMessage = this.getClass().toString()  +
                     " - insertCustomer($customer.customerEmail}" +

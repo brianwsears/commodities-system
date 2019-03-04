@@ -5,7 +5,10 @@ import groovy.transform.ToString
 @ToString
 class Tobacco extends BaseProduct {
 
-    String blend
+    int id
+    String manufacturer
+    String name
+    String type
+    String blendType
     String cut
-    String tobaccoType
 }

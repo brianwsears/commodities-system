@@ -28,6 +28,12 @@ abstract trait AbstractRestController {
         new ErrorResponse(exception, 404001, "Customer not found.")
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = CustomerPhoneNotFoundException)
+    @ResponseBody
+    handlePhoneNotFoundException(CustomerPhoneNotFoundException exception) {
+        new ErrorResponse(exception, 404002, "Phone number ${exception.message} not found.")
+    }
 
     /************************************************************************************************
      409 RESPONSE CODES

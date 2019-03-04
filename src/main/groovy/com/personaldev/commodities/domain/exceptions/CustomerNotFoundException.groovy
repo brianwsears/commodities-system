@@ -1,6 +1,6 @@
 package com.personaldev.commodities.domain.exceptions
 
-class CustomerNotFoundException extends RuntimeException {
+class CustomerNotFoundException extends Exception {
 
     String customer
 

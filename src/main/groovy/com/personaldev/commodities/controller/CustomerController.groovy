@@ -37,7 +37,6 @@ class CustomerController implements AbstractRestController {
         customerAddressService.createCustomerAddress(customerEmail, customerAddress)
     }
 
-
     @PostMapping(path = "/user/phone/{customerEmail}")
     CustomerPhone createCustomerPhone(
                         @PathVariable(value = "customerEmail", required = true ) String customerEmail,
@@ -63,5 +62,10 @@ class CustomerController implements AbstractRestController {
     @GetMapping(path = "/user/phone/{customerEmail}")
     List<CustomerPhone> getCustomerPhoneList(@PathVariable(value = "customerEmail", required = true) String customerEmail) {
         customerService.customerPhoneService.getCustomerPhoneList(customerEmail)
+    }
+
+    @DeleteMapping(path = "/user/phone/{phoneNumber}")
+    void deletePhoneNumber(@PathVariable(value = "phoneNumber", required = true) String phoneNumber) {
+        customerPhoneService.removeCustomerPhoneNumber(phoneNumber)
     }
 }

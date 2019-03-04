@@ -7,8 +7,6 @@ class BaseProduct {
 
     int id
     String type
-    String manufacturer
-    String productName
     String unitOfSale
     Float pricePerUnit
     Boolean inStock

@@ -1,9 +1,7 @@
 package com.personaldev.commodities.controller
 
 import com.personaldev.commodities.BaseSpec
-import com.personaldev.commodities.domain.exceptions.AddressNotFoundException
 import com.personaldev.commodities.domain.exceptions.CustomerNotFoundException
-import com.personaldev.commodities.domain.exceptions.PhoneNotFoundException
 import spock.lang.Shared
 
 class AbstractRestControllerSpec extends BaseSpec {

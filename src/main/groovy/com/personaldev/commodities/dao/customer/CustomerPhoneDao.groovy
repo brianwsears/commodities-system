@@ -2,7 +2,9 @@ package com.personaldev.commodities.dao.customer
 
 import com.personaldev.commodities.dao.BaseDao
 import com.personaldev.commodities.domain.customer.CustomerPhone
+import com.personaldev.commodities.domain.exceptions.CustomerNotFoundException
 import com.personaldev.commodities.domain.exceptions.CustomerPhoneAlreadyExistsException
+import com.personaldev.commodities.domain.exceptions.CustomerPhoneNotFoundException
 import org.springframework.dao.DuplicateKeyException
 import org.springframework.jdbc.core.BeanPropertyRowMapper
 import org.springframework.stereotype.Repository
@@ -10,16 +12,18 @@ import org.springframework.stereotype.Repository
 @Repository
 class CustomerPhoneDao extends BaseDao {
 
-    static final String SELECT_CUSTOMER_PHONE_LIST = """select phone_number, type from phone where phone.customer_email = ?"""
+    static final String SELECT_CUSTOMER_PHONE_LIST  = """select phone_number, type from phone where phone.customer_email = ?"""
 
-    static final String INSERT_CUSTOMER_PHONE = """insert into phone (phone_number, type, customer_email) values (?,?,?);"""
+    static final String INSERT_CUSTOMER_PHONE       = """insert into phone (phone_number, type, customer_email) values (?,?,?);"""
+
+    static final String DELETE_PHONE_NUMBER         = """delete from phone where phone_number = ?"""
 
 
     CustomerPhone insertCustomerPhone(String customerEmail, CustomerPhone customerPhone) throws Exception {
         try {
             jdbcTemplate.update(INSERT_CUSTOMER_PHONE, customerPhone.phoneNumber, customerPhone.type, customerEmail)
             return customerPhone
-        } catch (DuplicateKeyException e) {
+        } catch ( DuplicateKeyException e ) {
             throw new CustomerPhoneAlreadyExistsException(e.message, customerEmail, customerPhone)
         }
           catch (Exception e) {
@@ -35,6 +39,17 @@ class CustomerPhoneDao extends BaseDao {
         } catch (Exception e) {
             String detailedMessage = this.getClass().toString()  +
                     " - getCustomerPhoneList($customerEmail}" +
+                    " - CAUSE: ${e.dump()}"
+            throw new Exception(detailedMessage)
+        }
+    }
+
+    int deleteCustomerPhone(String phoneNumber) throws Exception {
+        try {
+            jdbcTemplate.update(DELETE_PHONE_NUMBER, phoneNumber)
+        } catch (Exception e) {
+            String detailedMessage = this.getClass().toString()  +
+                    " - deleteCustomerPhone($phoneNumber}" +
                     " - CAUSE: ${e.dump()}"
             throw new Exception(detailedMessage)
         }

@@ -14,3 +14,4 @@ gradlew.bat
 ### IntelliJ IDEA ###
 .idea
 *.iml
+/src/main/groovy/com/personaldev/commodities/CommoditiesApplication.groovy
