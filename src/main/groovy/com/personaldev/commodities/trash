@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="_39945c98-a7f6-4d5c-9885-ffd8203dc1f6" Version="2.0" IssueInstant="2019-03-06T17:09:34.068Z" Destination="https://stagingemployees.carfax.net/login/finish" InResponseTo="id6c1c178c166d486687be4aaf5e482730">
+    <Issuer xmlns="urn:oasis:names:tc:SAML:2.0:assertion">https://sts.windows.net/d8f5ff49-f5e5-45a9-bd3e-7ec1860498a0/</Issuer>
+    <samlp:Status>
+        <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success" />
+    </samlp:Status>
+    <Assertion xmlns="urn:oasis:names:tc:SAML:2.0:assertion" ID="_b44df3bb-8b8d-4e96-8132-9fad1298a06b" IssueInstant="2019-03-06T17:09:34.068Z" Version="2.0">
+        <Issuer>https://sts.windows.net/d8f5ff49-f5e5-45a9-bd3e-7ec1860498a0/</Issuer>
+        <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <SignedInfo>
+                <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+                <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" />
+                <Reference URI="#_b44df3bb-8b8d-4e96-8132-9fad1298a06b">
+                    <Transforms>
+                        <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+                        <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+                    </Transforms>
+                    <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+                    <DigestValue>OyY1DAlju+AGVRcNW0XdDT1TNWa+9PE9misd0HFD/Go=</DigestValue>
+                </Reference>
+            </SignedInfo>
+            <SignatureValue>UD3ilumCI0QDJZ5a1O6Wfdiv3bfRiidEYB9xl9bc1K8Rv8DHTgtqnVxmovjxIQAGgC7k52MRZNAdxtq7Cp0ZOIvqAFdMdolPEOh6Dc80YtiDlO82yFWN+Y4diOmyuZbqynfN2/zRARRG4jiVejxe6TAZhFSqwDJ9tR1Guaely8GO2Sc/3Ob9j47ynTwrW38wT33X0AzQZo21FE+UyFXc06aEO9IsIbJ8+N13aPJtq0YXtF+AcENM1KfR5GT7XANaUMTpM1N54IamO4qbBz4doDc9PtyR9OJZMcCSKY5gtF6WPxTnS9yhcPS2rev3tbh8SnXU9jtW0u49T2QlnmslmQ==</SignatureValue>
+            <KeyInfo>
+                <X509Data>
+                    <X509Certificate>MIIC8DCCAdigAwIBAgIQJzRk3LHQ55NI8PU7DO7wQjANBgkqhkiG9w0BAQsFADA0MTIwMAYDVQQDEylNaWNyb3NvZnQgQXp1cmUgRmVkZXJhdGVkIFNTTyBDZXJ0aWZpY2F0ZTAeFw0xODA4MTQxNDUwMzFaFw0yMTA4MTQxNDUwMzBaMDQxMjAwBgNVBAMTKU1pY3Jvc29mdCBBenVyZSBGZWRlcmF0ZWQgU1NPIENlcnRpZmljYXRlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsvFw9wIhLF20f0Jh5q9yTVd0y3OQ2bWWhXYSyrOxpBXx3zfYIgQPjwexYXW6zNjjMZsojQAO1LQBQEl3YhGz8APOExz0ix+qyK8u2plUKmxzgXidQ0rfEK7iM4f/MCmmelNdnJo+hTHD/Llyd09YO4msXxJlP3iwlofosNNhJq2P6z/3yQNXLtNUViWaKl4e5m2TaVd4R4SdvsRMdNhPICzUVDkNkEbUBO9nQv8cMABZmt9OIa/XY8UaA/y+n3ir+7TOPRmC5GimDfxo/6SPpp98DKx1GfY0V0QjW/l7tVYJI5EwFVrCJE5JmcQx5Inik/fci5Jyl/X0xawzuVIt2wIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQAiITCxrIHE2b0+CMAKQlKXugDzZz2Y89iB5dleQM2+2joyQQ1UR/lpROwI4a+r82VR5eCoCmb1cgQJNdv4WvN5bBZP3YWAFKcP8hz59Vi/wZdaOpQHZwv0Zcu2C6eqo3VvIAoI2lfO7HBmEGzEi72NZoOi3/JG4noMkMBitFwaXYyhwvl3URUW7sZ2pGgAdSz3SN7/EY2B8bBGadro1R3cR6CNf2Vg8IO5CdfSHdBndG3oJuLhNDqP3ViSrn9ifS0BltQ9ZC6xjSjAOGXu1SHxZGp13iN8cQeqpwsh+BaTsUHHtckbtFLsJKWoStTkufS90HmO1mkE/MUmx+Dg3SLt</X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </Signature>
+        <Subject>
+            <NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress">steven.schnur@cdo.net</NameID>
+            <SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+                <SubjectConfirmationData InResponseTo="id6c1c178c166d486687be4aaf5e482730" NotOnOrAfter="2019-03-06T17:14:34.068Z" Recipient="https://stagingemployees.carfax.net/login/finish" />
+            </SubjectConfirmation>
+        </Subject>
+        <Conditions NotBefore="2019-03-06T17:04:34.068Z" NotOnOrAfter="2019-03-06T18:04:34.068Z">
+            <AudienceRestriction>
+                <Audience>https://stagingemployees.carfax.net/login/ihsFinish</Audience>
+            </AudienceRestriction>
+        </Conditions>
+        <AttributeStatement>
+            <Attribute Name="http://schemas.microsoft.com/identity/claims/tenantid">
+                <AttributeValue>d8f5ff49-f5e5-45a9-bd3e-7ec1860498a0</AttributeValue>
+            </Attribute>
+            <Attribute Name="http://schemas.microsoft.com/identity/claims/objectidentifier">
+                <AttributeValue>93389143-5e56-4e9e-a6ca-11b9a2cebbbd</AttributeValue>
+            </Attribute>
+            <Attribute Name="http://schemas.microsoft.com/identity/claims/displayname">
+                <AttributeValue>Steven Schnur</AttributeValue>
+            </Attribute>
+            <Attribute Name="http://schemas.microsoft.com/identity/claims/identityprovider">
+                <AttributeValue>https://sts.windows.net/d8f5ff49-f5e5-45a9-bd3e-7ec1860498a0/</AttributeValue>
+            </Attribute>
+            <Attribute Name="http://schemas.microsoft.com/claims/authnmethodsreferences">
+                <AttributeValue>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</AttributeValue>
+                <AttributeValue>http://schemas.microsoft.com/claims/multipleauthn</AttributeValue>
+            </Attribute>
+            <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname">
+                <AttributeValue>Steven</AttributeValue>
+            </Attribute>
+            <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname">
+                <AttributeValue>Schnur</AttributeValue>
+            </Attribute>
+            <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress">
+                <AttributeValue>steven.schnur@corpcdo.onmicrosoft.com</AttributeValue>
+            </Attribute>
+            <Attribute Name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name">
+                <AttributeValue>steven.schnur@cdo.net</AttributeValue>
+            </Attribute>
+        </AttributeStatement>
+        <AuthnStatement AuthnInstant="2019-02-28T19:14:21.403Z" SessionIndex="_b44df3bb-8b8d-4e96-8132-9fad1298a06b">
+            <AuthnContext>
+                <AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</AuthnContextClassRef>
+            </AuthnContext>
+        </AuthnStatement>
+    </Assertion>
+</samlp:Response>

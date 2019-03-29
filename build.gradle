@@ -6,7 +6,7 @@ apply plugin: 'io.spring.dependency-management'
 
 buildscript {
     ext {
-        springBootVersion = '2.1.2.RELEASE'
+        springBootVersion = '2.1.3.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -43,7 +43,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}")
 
     // Other Compile Dependencies
-    compile('com.h2database:h2:1.4.196')
+    //compile('com.h2database:h2:1.4.196')
     compile('com.fasterxml.jackson.core:jackson-core:2.9.4')
     compile('com.mashape.unirest:unirest-java:1.4.9')
     compile('io.jsonwebtoken:jjwt:0.9.0')
@@ -55,7 +55,7 @@ dependencies {
     compile('org.jasypt:jasypt:1.9.2')
 
     // RUNTIME Dependencies
-    runtime('mysql:mysql-connector-java')
+    runtime('mysql:mysql-connector-java:8.0.15')
     runtime("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 
